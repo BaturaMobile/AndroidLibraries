@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Design Library</string>
+    <string name="radio_buttons">Radio Buttons</string>
+    <string name="editText">Editext</string>
+    <string name="show_error">Show Error</string>
+    <string name="insert_password">Insert Password</string>
+    <string name="insert_email">Insert Email</string>
+    <string name="email_invalid">Email Invalid</string>
+    <string name="no_editable_edit_text">Edit Text not Editable</string>
+
+</resources>
