@@ -29,7 +29,7 @@ public class DelegateViewFont {
         {
             if (attrs != null){
                 TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.DesignCustomFont);
-                mStyle = attributes.getString(R.styleable.DesignCustomFont_fontType);
+                mStyle = attributes.getString(R.styleable.DesignCustomFont_BaturaFontType);
 
                 attributes.recycle();
             }

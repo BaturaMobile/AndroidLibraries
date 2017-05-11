@@ -2,7 +2,7 @@
 <resources>
 
     <declare-styleable name="DesignCustomFont">
-        <attr name="fontType" format="string"/>
+        <attr name="BaturaFontType" format="string"/>
     </declare-styleable>
 
 </resources>
