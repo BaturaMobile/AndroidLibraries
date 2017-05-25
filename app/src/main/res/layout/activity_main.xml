@@ -1,132 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.baturamobile.designlibrary.MainActivity">
+    <include layout="@layout/toolbar_three" />
 
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_margin="10dp">
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:gravity="left|center"
-                android:text="@string/radio_buttons"
-                android:textSize="18sp" />
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="com.baturamobile.designlibrary.MainActivity">
 
-            <RadioButton
-                android:id="@+id/radioButton2"
+            <RadioGroup
+                android:id="@+id/radioGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/radioButton"
-                android:layout_weight="1"
-                android:text="RadioButton" />
+                android:layout_alignParentTop="true"
+                android:layout_margin="10dp">
 
-            <RadioButton
-                android:id="@+id/radioButton"
+                <com.baturamobile.design.BaturaTextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="left|center"
+                    android:text="@string/radio_buttons"
+                    android:textSize="18sp" />
+
+                <com.baturamobile.design.BaturaRadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/radioButton"
+                    android:layout_weight="1"
+                    android:text="RadioButton" />
+
+                <com.baturamobile.design.BaturaRadioButton
+                    android:id="@+id/radioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="RadioButton" />
+            </RadioGroup>
+
+            <com.baturamobile.design.BaturaTextInputLayout
+                android:id="@+id/password_input_layout"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView2"
+                android:layout_alignStart="@+id/textView2"
+                android:layout_below="@+id/textView2"
+                app:passwordToggleEnabled="true">
+
+                <com.baturamobile.design.BaturaEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/insert_password"
+                    android:inputType="textPassword"
+                    android:visibility="visible" />
+            </com.baturamobile.design.BaturaTextInputLayout>
+
+            <com.baturamobile.design.BaturaButton
+                android:id="@+id/pil_show_error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/password_input_layout"
+                android:layout_alignStart="@+id/password_input_layout"
+                android:layout_below="@+id/password_input_layout"
+                android:layout_weight="1"
+                android:text="@string/show_error" />
+
+            <com.baturamobile.design.BaturaTextView
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/radioGroup"
+                android:layout_alignStart="@+id/radioGroup"
+                android:layout_below="@+id/radioGroup"
                 android:layout_weight="1"
-                android:text="RadioButton" />
-        </RadioGroup>
-
-        <com.baturamobile.design.BaturaTextInputLayout
-            android:id="@+id/password_input_layout"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true"
-            android:layout_below="@+id/textView2"
-            android:layout_alignLeft="@+id/textView2"
-            android:layout_alignStart="@+id/textView2">
-
-            <com.baturamobile.design.BaturaEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/insert_password"
-                android:inputType="textPassword"
-                android:visibility="visible" />
-        </com.baturamobile.design.BaturaTextInputLayout>
-
-        <com.baturamobile.design.BaturaButton
-            android:id="@+id/pil_show_error"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/password_input_layout"
-            android:layout_alignStart="@+id/password_input_layout"
-            android:layout_below="@+id/password_input_layout"
-            android:layout_weight="1"
-            android:text="@string/show_error" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/radioGroup"
-            android:layout_alignStart="@+id/radioGroup"
-            android:layout_below="@+id/radioGroup"
-            android:layout_weight="1"
-            android:text="@string/editText"
-            android:textSize="18sp" />
+                android:text="@string/editText"
+                android:textSize="18sp" />
 
 
-        <com.baturamobile.design.BaturaTextInputLayout
-            android:id="@+id/email_input_layout"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/pil_show_error"
-            android:layout_alignStart="@+id/pil_show_error"
-            android:layout_below="@+id/pil_show_error"
-            app:passwordToggleEnabled="true">
+            <com.baturamobile.design.BaturaTextInputLayout
+                android:id="@+id/email_input_layout"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/pil_show_error"
+                android:layout_alignStart="@+id/pil_show_error"
+                android:layout_below="@+id/pil_show_error"
+                app:passwordToggleEnabled="true">
+
+                <com.baturamobile.design.BaturaEditText
+                    android:id="@+id/email_input_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:hint="@string/insert_email"
+                    android:inputType="textEmailAddress"
+                    android:visibility="visible" />
+            </com.baturamobile.design.BaturaTextInputLayout>
+
+            <com.baturamobile.design.BaturaButton
+                android:id="@+id/email_verify_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/email_input_layout"
+                android:layout_alignLeft="@+id/email_input_layout"
+                android:layout_alignRight="@+id/email_input_layout"
+                android:layout_alignStart="@+id/email_input_layout"
+                android:layout_below="@+id/email_input_layout"
+                android:layout_marginTop="11dp"
+                android:text="Button" />
 
             <com.baturamobile.design.BaturaEditText
-                android:id="@+id/email_input_edittext"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:id="@+id/disbled_edittext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/email_verify_button"
+                android:layout_alignStart="@+id/email_verify_button"
+                android:layout_below="@+id/email_verify_button"
+                android:text="@string/no_editable_edit_text" />
 
-                android:hint="@string/insert_email"
-                android:inputType="textEmailAddress"
-                android:visibility="visible" />
-        </com.baturamobile.design.BaturaTextInputLayout>
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/radioGroup"
+                android:layout_toEndOf="@+id/password_input_layout"
+                android:layout_toRightOf="@+id/password_input_layout"
+                app:srcCompat="@mipmap/ic_launcher" />
 
-        <com.baturamobile.design.BaturaButton
-            android:id="@+id/email_verify_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/email_input_layout"
-            android:layout_alignLeft="@+id/email_input_layout"
-            android:layout_alignRight="@+id/email_input_layout"
-            android:layout_alignStart="@+id/email_input_layout"
-            android:layout_below="@+id/email_input_layout"
-            android:layout_marginTop="11dp"
-            android:text="Button" />
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>
 
-        <com.baturamobile.design.BaturaEditText
-            android:id="@+id/disbled_edittext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/email_verify_button"
-            android:layout_alignStart="@+id/email_verify_button"
-            android:layout_below="@+id/email_verify_button"
-            android:text="@string/no_editable_edit_text" />
-
-    </RelativeLayout>
-</ScrollView>
 

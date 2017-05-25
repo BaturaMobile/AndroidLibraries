@@ -8,4 +8,8 @@
     <string name="email_invalid">Email Invalid</string>
     <string name="no_editable_edit_text">Edit Text not Editable</string>
 
+
+    <string name="add">Add</string>
+    <string name="send">Send</string>
+
 </resources>

@@ -34,10 +34,16 @@ public class DelegateViewFont {
                 attributes.recycle();
             }
 
+            Typeface typeFace = null;
 
             if ( mStyle != null && !mStyle.isEmpty() )
             {
-                delegateTextView.setTypeface( Typeface.createFromAsset( context.getAssets(), mStyle ) );
+                typeFace = Typeface.createFromAsset( context.getAssets(), mStyle );
+            }else if (!GenericData.GENERIC_FONT.isEmpty()){
+                typeFace = Typeface.createFromAsset( context.getAssets(), GenericData.GENERIC_FONT );
+            }
+            if (typeFace != null){
+                delegateTextView.setTypeface(typeFace);
             }
         }
     }
