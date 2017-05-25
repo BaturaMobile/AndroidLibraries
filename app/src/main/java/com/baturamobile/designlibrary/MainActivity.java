@@ -1,20 +1,20 @@
 package com.baturamobile.designlibrary;
 
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.baturamobile.design.BaturaButton;
 import com.baturamobile.design.BaturaEditText;
+import com.baturamobile.design.BaturaTextInputLayout;
 
 public class MainActivity extends AppCompatActivity {
 
     BaturaEditText baturaEditText;
 
-    TextInputLayout editTextInputLayout;
+    BaturaTextInputLayout editTextInputLayout;
 
-    TextInputLayout editTextEmailLayout;
+    BaturaTextInputLayout editTextEmailLayout;
 
     BaturaEditText editTextEmail;
 
@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         button = (BaturaButton) findViewById(R.id.pil_show_error);
-        editTextInputLayout = (TextInputLayout)findViewById(R.id.password_input_layout);
+        editTextInputLayout = (BaturaTextInputLayout)findViewById(R.id.password_input_layout);
 
-        editTextEmailLayout = (TextInputLayout)findViewById(R.id.email_input_layout);
+        editTextEmailLayout = (BaturaTextInputLayout)findViewById(R.id.email_input_layout);
         editTextEmail = (BaturaEditText)findViewById(R.id.email_input_edittext);
 
         notEditableEditText = (BaturaEditText)findViewById(R.id.disbled_edittext);
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         editTextEmailLayout.setEnabled(true);
         editTextInputLayout.setEnabled(true);
 
-
+        
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 if (!editTextEmail.isValid()){
                     editTextEmailLayout.setError(getString(R.string.email_invalid));
                 }else{
-                    editTextEmailLayout.setError(null);
+                    editTextEmailLayout.setErrorEnabled(false);
                 }
             }
         });

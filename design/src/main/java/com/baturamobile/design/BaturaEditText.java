@@ -71,4 +71,5 @@ public class BaturaEditText extends TextInputEditText{
             this.setFocusableInTouchMode(editable);
 
     }
+
 }

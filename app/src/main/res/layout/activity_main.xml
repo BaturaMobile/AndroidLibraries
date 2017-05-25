@@ -48,14 +48,14 @@
                 android:text="RadioButton" />
         </RadioGroup>
 
-        <android.support.design.widget.TextInputLayout
+        <com.baturamobile.design.BaturaTextInputLayout
             android:id="@+id/password_input_layout"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textView2"
-            android:layout_alignStart="@+id/textView2"
+            app:passwordToggleEnabled="true"
             android:layout_below="@+id/textView2"
-            app:passwordToggleEnabled="true">
+            android:layout_alignLeft="@+id/textView2"
+            android:layout_alignStart="@+id/textView2">
 
             <com.baturamobile.design.BaturaEditText
                 android:layout_width="match_parent"
@@ -63,7 +63,7 @@
                 android:hint="@string/insert_password"
                 android:inputType="textPassword"
                 android:visibility="visible" />
-        </android.support.design.widget.TextInputLayout>
+        </com.baturamobile.design.BaturaTextInputLayout>
 
         <com.baturamobile.design.BaturaButton
             android:id="@+id/pil_show_error"
@@ -87,7 +87,7 @@
             android:textSize="18sp" />
 
 
-        <android.support.design.widget.TextInputLayout
+        <com.baturamobile.design.BaturaTextInputLayout
             android:id="@+id/email_input_layout"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
                 android:hint="@string/insert_email"
                 android:inputType="textEmailAddress"
                 android:visibility="visible" />
-        </android.support.design.widget.TextInputLayout>
+        </com.baturamobile.design.BaturaTextInputLayout>
 
         <com.baturamobile.design.BaturaButton
             android:id="@+id/email_verify_button"
