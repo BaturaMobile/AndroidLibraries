@@ -1,51 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
+<merge>
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/toolbar"
+    android:id="@+id/tt_toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:theme="@style/ToolBarStyle"
-    android:background="@android:color/holo_blue_dark"
+    app:theme="?attr/toolbarStyle"
     android:paddingBottom="14dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="left|center_vertical"
         android:orientation="vertical">
 
         <com.baturamobile.design.BaturaTextView
-            android:id="@+id/baturaTextView2"
+            android:id="@+id/tt_title1"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:lines="2"
-            android:text="Mikel Goitia Lekue Prueba prueba prueba prueba prueba"
-            android:textColor="@android:color/background_light"
+            android:textColor="@android:color/black"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="visible"
+            tools:text="Mikel Goitia Lekue Prueba prueba prueba prueba prueba" />
 
         <com.baturamobile.design.BaturaTextView
-            android:id="@+id/baturaTextView"
+            android:id="@+id/tt_title2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/black"
+            android:visibility="gone"
+            tools:text="mikelgoitia@gmail.com"
+            tools:visibility="visible" />
+
+        <com.baturamobile.design.BaturaTextView
+            android:id="@+id/tt_title3"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:lines="1"
-            android:text="mikelgoitia@gmail.com"
-            android:textColor="@android:color/background_light" />
-
-        <com.baturamobile.design.BaturaTextView
-
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:ellipsize="end"
-            android:gravity="center_vertical"
-            android:lines="1"
-            android:text="Hombre"
-            android:textColor="@android:color/background_light" />
+            android:textColor="@android:color/black"
+            android:visibility="gone"
+            tools:text="Hombre"
+            tools:visibility="visible" />
     </LinearLayout>
 
 </android.support.v7.widget.Toolbar>
+
+</merge>
