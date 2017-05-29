@@ -1,57 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge>
-<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tt_toolbar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:theme="?attr/toolbarStyle"
-    android:paddingBottom="14dp">
+<merge xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/tt_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left|center_vertical"
-        android:orientation="vertical">
+        android:paddingBottom="14dp"
+        app:theme="?attr/toolbarStyle">
 
-        <com.baturamobile.design.BaturaTextView
-            android:id="@+id/tt_title1"
-            android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            android:ellipsize="end"
-            android:gravity="center_vertical"
-            android:lines="2"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:visibility="visible"
-            tools:text="Mikel Goitia Lekue Prueba prueba prueba prueba prueba" />
-
-        <com.baturamobile.design.BaturaTextView
-            android:id="@+id/tt_title2"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:gravity="center_vertical"
-            android:textColor="@android:color/black"
-            android:visibility="gone"
-            tools:text="mikelgoitia@gmail.com"
-            tools:visibility="visible" />
+            android:gravity="left|center_vertical"
+            android:orientation="vertical">
 
-        <com.baturamobile.design.BaturaTextView
-            android:id="@+id/tt_title3"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:ellipsize="end"
-            android:gravity="center_vertical"
-            android:lines="1"
-            android:textColor="@android:color/black"
-            android:visibility="gone"
-            tools:text="Hombre"
-            tools:visibility="visible" />
-    </LinearLayout>
+            <com.baturamobile.design.BaturaTextView
+                android:id="@+id/tt_title1"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:lines="2"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                tools:text="Mikel Goitia Lekue Prueba prueba prueba prueba prueba" />
 
-</android.support.v7.widget.Toolbar>
+            <com.baturamobile.design.BaturaTextView
+                android:id="@+id/tt_title2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:paddingBottom="10dp"
+                android:textColor="@android:color/black"
+                android:visibility="visible"
+                tools:text="mikelgoitia@gmail.com"
+                tools:visibility="gone" />
+
+            <com.baturamobile.design.BaturaTextView
+                android:id="@+id/tt_title3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:paddingBottom="10dp"
+                android:textColor="@android:color/black"
+                android:visibility="visible"
+                tools:text="Hombre"
+                tools:visibility="visible" />
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
 
 </merge>
