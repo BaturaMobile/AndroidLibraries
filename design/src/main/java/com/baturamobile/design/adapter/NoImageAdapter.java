@@ -33,14 +33,14 @@ public class NoImageAdapter extends BaseAdapter<NoImageModel> {
         }
 
         @Override
-        void setupView(View view) {
+        public void setupView(View view) {
             textView = (TextView) view.findViewById(R.id.nih_text);
 
             view.findViewById(R.id.nih_container).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (holderClick != null) {
-                        holderClick.onHolderClick(itemModel, position);
+                        holderClick.onHolderClick(getItemModel(), position);
                     }
                 }
             });
@@ -48,8 +48,8 @@ public class NoImageAdapter extends BaseAdapter<NoImageModel> {
         }
 
         @Override
-        void refreshView() {
-            baturaTextView.setText(itemModel.getText());
+        public void refreshView() {
+            baturaTextView.setText(getItemModel().getText());
         }
 
 

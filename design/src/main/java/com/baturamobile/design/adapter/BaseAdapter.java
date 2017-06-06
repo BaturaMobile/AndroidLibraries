@@ -16,12 +16,13 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Ba
 
     protected HolderClick<T> holderClick;
 
-    BaseAdapter(){
+    public BaseAdapter(){
         arrayItems = new ArrayList<>();
     }
 
-    protected void addItems(List<T> arrayItems){
+    public void addItems(List<T> arrayItems){
         this.arrayItems = arrayItems;
+        notifyDataSetChanged();
     }
 
     public void holderClick(HolderClick<T> holderClick){
@@ -38,29 +39,44 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Ba
         return arrayItems.size();
     }
 
-    abstract class BaseViewHolder extends RecyclerView.ViewHolder{
+    public abstract class BaseViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
 
-        T itemModel;
+        private T itemModel;
         int position;
 
-        BaseViewHolder(View itemView) {
+        public BaseViewHolder(View itemView) {
             super(itemView);
             setupView(itemView);
         }
 
-        abstract void setupView(View view);
+        public abstract void setupView(View view);
 
         void bindView(T model, int position) {
             this.itemModel = model;
             this.position = position;
+
+            refreshView();
+
+
         }
 
-        abstract void refreshView();
+        public abstract void refreshView();
 
 
+        public T getItemModel() {
+            return itemModel;
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            if (holderClick != null){
+                holderClick.onHolderClick(itemModel,position);
+            }
+        }
     }
 
-    interface HolderClick<T>{
+    public interface HolderClick<T>{
         void onHolderClick(T item,int position);
     }
 }

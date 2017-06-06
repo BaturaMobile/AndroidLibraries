@@ -31,14 +31,14 @@ public class ImageAdapter extends BaseAdapter<ImageModel> {
         }
 
         @Override
-        void setupView(View view) {
+        public void setupView(View view) {
             baturaTextView = (BaturaTextView) view.findViewById(R.id.ih_text);
             imageView = (AppCompatImageView) view.findViewById(R.id.ih_image);
             view.findViewById(R.id.nih_container).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (holderClick != null) {
-                        holderClick.onHolderClick(itemModel, position);
+                        holderClick.onHolderClick(getItemModel(), position);
                     }
                 }
             });
@@ -46,10 +46,11 @@ public class ImageAdapter extends BaseAdapter<ImageModel> {
         }
 
         @Override
-        void refreshView() {
-            baturaTextView.setText(itemModel.getText());
-            Picasso.with(imageView.getContext()).load(itemModel.getImageURI()).into(imageView);
+        public void refreshView() {
+            baturaTextView.setText(getItemModel().getText());
+            Picasso.with(imageView.getContext()).load(getItemModel().getImageURI()).into(imageView);
         }
+
 
 
     }
