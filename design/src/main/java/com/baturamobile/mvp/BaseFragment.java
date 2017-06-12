@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 
+import com.baturamobile.design.R;
 import com.baturamobile.design.Utils;
 
 /**
@@ -20,6 +21,9 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     public void onStart(){
         super.onStart();
         progress = new ProgressDialog(getContext());
+        progress.setTitle(R.string.loading);
+        progress.setMessage(getContext().getString(R.string.please_wait));
+        progress.setCancelable(false);
         if (getPresenter() != null){
             getPresenter().onStart();
         }

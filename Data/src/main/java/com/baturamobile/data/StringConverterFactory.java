@@ -14,7 +14,7 @@ import retrofit2.Retrofit;
  * Created by vssnake on 12/06/2017.
  */
 
-final class StringConverterFactory extends Converter.Factory {
+public final class StringConverterFactory extends Converter.Factory {
     @Override
     public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations,
                                                             Retrofit retrofit) {
@@ -32,5 +32,9 @@ final class StringConverterFactory extends Converter.Factory {
                 return RequestBody.create(MediaType.parse("text/plain"), value);
             }
         };
+    }
+
+    public static StringConverterFactory create() {
+        return new StringConverterFactory();
     }
 }
