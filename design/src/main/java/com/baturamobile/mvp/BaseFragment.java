@@ -19,11 +19,10 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     @Override
     public void onStart(){
         super.onStart();
+        progress = new ProgressDialog(getContext());
         if (getPresenter() != null){
             getPresenter().onStart();
         }
-        progress = new ProgressDialog(getContext());
-
     }
     @Override
     public void onStop(){
