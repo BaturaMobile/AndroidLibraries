@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Design</string>
 
+    <string name="loading">Cargando...</string>
+    <string name="please_wait">Por favor, espere...</string>
+
 
 
 </resources>
