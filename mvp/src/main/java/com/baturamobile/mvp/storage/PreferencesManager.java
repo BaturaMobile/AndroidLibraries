@@ -1,4 +1,4 @@
-package com.baturamobile.design.storage;
+package com.baturamobile.mvp.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;

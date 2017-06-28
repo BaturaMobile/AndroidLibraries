@@ -1,4 +1,4 @@
-package com.baturamobile.design.recycleview;
+package com.baturamobile.mvp;
 
 import java.util.List;
 

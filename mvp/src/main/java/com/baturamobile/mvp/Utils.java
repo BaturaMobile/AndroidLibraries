@@ -1,4 +1,4 @@
-package com.baturamobile.design;
+package com.baturamobile.mvp;
 
 import android.content.Intent;
 import android.net.Uri;

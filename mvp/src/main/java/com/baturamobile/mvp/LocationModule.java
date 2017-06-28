@@ -13,7 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
 import com.baturamobile.design.Utils;
-import com.baturamobile.design.storage.PreferencesManager;
+import com.baturamobile.mvp.storage.PreferencesManager;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;

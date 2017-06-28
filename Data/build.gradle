@@ -24,8 +24,6 @@ android {
 
 def dVersion = ext
 
-def dRootVersion = rootProject.ext
-
 ext{
     minSdk = 16
     targetSdk = 25
@@ -49,6 +47,8 @@ ext{
 }
 
 
+
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -61,8 +61,8 @@ dependencies {
 
     compile 'com.android.support:appcompat-v7:' + dVersion.androidSupportVersion
 
-    compile 'com.google.dagger:dagger-android:' + dRootVersion.daggerVersion
-    annotationProcessor 'com.google.dagger:dagger-compiler:' + dRootVersion.daggerVersion
+    compile 'com.google.dagger:dagger-android:' + dVersion.daggerVersion
+    annotationProcessor 'com.google.dagger:dagger-compiler:' + dVersion.daggerVersion
 
     testCompile 'junit:junit:' + dVersion.junitVersion
     testCompile 'org.mockito:mockito-core:' + dVersion.mockitoCoreVersion

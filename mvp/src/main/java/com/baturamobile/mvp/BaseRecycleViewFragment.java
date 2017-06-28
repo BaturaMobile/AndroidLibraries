@@ -1,4 +1,4 @@
-package com.baturamobile.design.recycleview;
+package com.baturamobile.mvp;
 
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 import com.baturamobile.design.BaturaTextView;
 import com.baturamobile.design.R;
 import com.baturamobile.design.adapter.BaseAdapter;
-import com.baturamobile.mvp.BaseFragment;
-import com.baturamobile.mvp.BasePresenter;
 
 import java.util.List;
 
