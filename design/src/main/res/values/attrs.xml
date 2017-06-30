@@ -5,4 +5,12 @@
         <attr name="BaturaFontType" format="string"/>
     </declare-styleable>
 
+        <declare-styleable name="CustomEditTextView">
+            <attr name="drawableLeftCompat" format="reference"/>
+            <attr name="drawableRightCompat" format="reference"/>
+            <attr name="drawableTopCompat" format="reference"/>
+            <attr name="drawableBottomCompat" format="reference"/>
+            <attr name="editable" format="boolean"/>
+        </declare-styleable>
+
 </resources>
