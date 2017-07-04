@@ -8,7 +8,9 @@ public abstract class  BasePresenter<T extends BaseInteface> {
 
     protected T viewInterface;
 
-    protected abstract void inject(T link);
+    public void inject(T link){
+        viewInterface = link;
+    }
 
     protected void onStart(){}
 
