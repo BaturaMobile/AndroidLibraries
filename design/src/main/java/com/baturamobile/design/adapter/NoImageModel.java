@@ -1,18 +1,13 @@
 package com.baturamobile.design.adapter;
 
+import java.io.Serializable;
+
 /**
  * Created by vssnake on 08/05/2017.
  */
 
-public class NoImageModel {
+public abstract class NoImageModel implements Serializable {
 
-    private String text;
+    public abstract String getText();
 
-    public NoImageModel(String text){
-        this.text = text;
-    }
-
-    public String getText() {
-        return text;
-    }
 }

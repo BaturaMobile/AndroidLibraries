@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.baturamobile.design.BaturaTextView;
-import com.baturamobile.design.R;
 import com.baturamobile.design.adapter.BaseAdapter;
+import com.baturamobile.design.adapter.NoImageModel;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * A placeholder fragment containing a simple view.
  */
-public abstract class BaseRecycleViewFragment<T extends BaseAdapter,P extends BasePresenter,M>
+public abstract class BaseRecycleViewFragment<T extends BaseAdapter,P extends BasePresenter,M extends NoImageModel>
         extends BaseFragment<P> implements BaseRecycleViewView<M>, BaseAdapter.HolderClick<M> {
 
     RecyclerView recyclerView;
@@ -36,19 +36,23 @@ public abstract class BaseRecycleViewFragment<T extends BaseAdapter,P extends Ba
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState){
-        View view = inflater.inflate(R.layout.fragment_rv,container);
+        View view = inflater.inflate(R.layout.fragment_rv,container,false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.frv_rv);
         emptyImage = (AppCompatImageView) view.findViewById(R.id.frv_empty_image);
         emptyText = (BaturaTextView) view.findViewById(R.id.frv_empty_text);
 
+        return view;
+
+    }
+
+    @Override
+    public void onViewCreated(View view,Bundle savedInstanceState){
+        super.onViewCreated(view,savedInstanceState);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         getAdapter().holderClick(this);
         recyclerView.setAdapter(getAdapter());
-
-        return view;
-
     }
 
     public abstract T getAdapter();
@@ -59,7 +63,7 @@ public abstract class BaseRecycleViewFragment<T extends BaseAdapter,P extends Ba
     public void showCards(List<M> receiptModelList) {
 
         recyclerView.setVisibility(View.VISIBLE);
-        getAdapter().addItems(receiptModelList);
+        getAdapter().addItems(receiptModelList,null);
 
         emptyImage.setVisibility(View.GONE);
         emptyText.setVisibility(View.GONE);

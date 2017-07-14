@@ -9,7 +9,6 @@ import android.support.annotation.UiThread;
 import android.support.v7.app.AppCompatActivity;
 
 import com.baturamobile.design.R;
-import com.baturamobile.design.Utils;
 
 
 /**

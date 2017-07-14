@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 
 import com.baturamobile.design.R;
-import com.baturamobile.design.Utils;
 
 /**
  * Created by unai on 12/08/2016.

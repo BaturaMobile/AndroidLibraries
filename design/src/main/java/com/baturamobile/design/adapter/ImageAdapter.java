@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso;
  * Created by vssnake on 09/05/2017.
  */
 
-public class ImageAdapter extends BaseAdapter<ImageModel> {
+public class ImageAdapter<M extends WithImageModel> extends BaseAdapter<WithImageModel> {
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
@@ -48,7 +48,7 @@ public class ImageAdapter extends BaseAdapter<ImageModel> {
         @Override
         public void refreshView() {
             baturaTextView.setText(getItemModel().getText());
-            Picasso.with(imageView.getContext()).load(getItemModel().getImageURI()).into(imageView);
+            Picasso.with(imageView.getContext()).load( getItemModel().getImageUri()).into(imageView);
         }
 
 

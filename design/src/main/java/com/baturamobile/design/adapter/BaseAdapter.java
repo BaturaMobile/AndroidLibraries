@@ -1,5 +1,6 @@
 package com.baturamobile.design.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -14,14 +15,17 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Ba
 
     private List<T> arrayItems;
 
+    T selectedItem;
+
     protected HolderClick<T> holderClick;
 
     public BaseAdapter(){
         arrayItems = new ArrayList<>();
     }
 
-    public void addItems(List<T> arrayItems){
+    public void addItems(List<T> arrayItems,T selectedItem){
         this.arrayItems = arrayItems;
+        this.selectedItem = selectedItem;
         notifyDataSetChanged();
     }
 
@@ -44,9 +48,12 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Ba
         private T itemModel;
         int position;
 
+        Context context;
+
         public BaseViewHolder(View itemView) {
             super(itemView);
             setupView(itemView);
+            context = itemView.getContext();
         }
 
         public abstract void setupView(View view);
