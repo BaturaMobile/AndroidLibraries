@@ -1,9 +1,6 @@
 package com.vssnake.devxit.modules;
 
-import android.content.Intent;
-
 import com.vssnake.devxit.observer.ObserverController;
-import com.vssnake.devxit.view.delegate.DevxitDelegateCallback;
 
 import javax.inject.Inject;
 
@@ -13,27 +10,25 @@ import javax.inject.Inject;
 
 public class DevxitModuleDelegate{
 
-    DevxitDelegateCallback callback;
-
-    PermissionModule permission;
-
-    @Inject
     ObserverController observerController;
 
     @Inject
-    PermissionModule permissionModule;
-
-    public DevxitModuleDelegate(DevxitDelegateCallback callback){
-        this.callback = callback;
-
-        callback.getDevxitApp().getApplicationComponent().inject(this);
-
-
-
+    public DevxitModuleDelegate(ObserverController observerController){
+        this.observerController = observerController;
     }
 
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        permissionModule.resultPermission(requestCode,resultCode);
+    public void onStart() {
+        if (observerController != null){
+            observerController.emit(BaseModule.ON_ATTACH_MODULE,null);
+        }
+
+    }
+
+    public void onStop() {
+        if (observerController != null){
+            observerController.emit(BaseModule.ON_DETTACH_MODULE,null);
+        }
+
     }
 }

@@ -6,8 +6,10 @@ import android.os.Bundle;
 import com.vssnake.devxit.executor.PostExecutionThread;
 import com.vssnake.devxit.executor.ThreadExecutor;
 import com.vssnake.devxit.internal.di.modules.ApplicationModule;
-import com.vssnake.devxit.modules.DevxitModuleDelegate;
 import com.vssnake.devxit.observer.ObserverController;
+import com.vssnake.devxit.view.DevxitPresenter;
+import com.vssnake.devxit.view.DevxitView;
+import com.vssnake.devxit.view.delegate.DevxitActivityDelegateImpl;
 
 import javax.inject.Singleton;
 
@@ -20,8 +22,6 @@ import dagger.Component;
 @Component( modules = ApplicationModule.class)
 public interface ApplicationComponent {
 
-    void inject(DevxitModuleDelegate devxitModuleDelegate);
-
     //Exposed to sub-graphs
     Context context();
 
@@ -32,4 +32,6 @@ public interface ApplicationComponent {
     ObserverController observerController();
 
     Bundle parametersFactory();
+
+    void inject(DevxitActivityDelegateImpl<DevxitView,DevxitPresenter<DevxitView>> devxitActivityDelegate);
 }

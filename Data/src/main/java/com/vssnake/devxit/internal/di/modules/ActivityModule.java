@@ -3,6 +3,7 @@ package com.vssnake.devxit.internal.di.modules;
 import android.support.v7.app.AppCompatActivity;
 
 import com.vssnake.devxit.internal.di.PerActivity;
+import com.vssnake.devxit.modules.RequestPermissionModule;
 
 import dagger.Module;
 import dagger.Provides;
@@ -27,6 +28,12 @@ public class ActivityModule {
     @PerActivity
     AppCompatActivity activity(){
         return this.appCompatActivity;
+    }
+
+    @Provides
+    @PerActivity
+    RequestPermissionModule providePermissionModule(AppCompatActivity appCompatActivity){
+       return new RequestPermissionModule(appCompatActivity);
     }
 
 }

@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.vssnake.devxit.modules.DevxitModuleDelegate;
+import com.vssnake.devxit.observer.ObserverController;
 import com.vssnake.devxit.view.DevxitPresenter;
 import com.vssnake.devxit.view.DevxitView;
 
@@ -18,12 +20,16 @@ public class DevxitFragmentDelegateImpl<V extends DevxitView,P extends DevxitPre
 
     protected DevxitDelegateCallback<V, P> devxitDelegateCallback;
     protected DevxitMVPDelegate<V, P> devxitMVPDelegate;
+    protected DevxitModuleDelegate devxitModuleDelegate;
 
-    public DevxitFragmentDelegateImpl(DevxitDelegateCallback<V,P> devxitDelegateCallback){
+    ObserverController observerController;
+
+    public DevxitFragmentDelegateImpl(DevxitDelegateCallback<V,P> devxitDelegateCallback,
+                                      ObserverController observerController){
         if (devxitDelegateCallback == null) {
             throw new NullPointerException("MvpDelegateCallback is null!");
         }
-
+        this.observerController = observerController;
         this.devxitDelegateCallback = devxitDelegateCallback;
     }
 
@@ -35,10 +41,17 @@ public class DevxitFragmentDelegateImpl<V extends DevxitView,P extends DevxitPre
         return devxitMVPDelegate;
     }
 
+    protected DevxitModuleDelegate getDevxitModuleDelegate(){
+        if (devxitModuleDelegate == null){
+            devxitModuleDelegate = new DevxitModuleDelegate(observerController);
+        }
+        return devxitModuleDelegate;
+    }
+
 
     @Override
     public void onCreate(Bundle saved) {
-        getDevxitMVPDelegate().initializeDependencieInjection();
+        //getDevxitMVPDelegate().initializeDependencieInjection();
     }
 
     @Override
@@ -50,21 +63,23 @@ public class DevxitFragmentDelegateImpl<V extends DevxitView,P extends DevxitPre
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
         getDevxitMVPDelegate().attachView();
+
     }
 
     @Override
     public void onDestroyView() {
         getDevxitMVPDelegate().detachView();
+
     }
 
     @Override
     public void onPause() {
-
+        getDevxitModuleDelegate().onStop();
     }
 
     @Override
     public void onResume() {
-
+        getDevxitModuleDelegate().onStart();
     }
 
     @Override
