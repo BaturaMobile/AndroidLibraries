@@ -36,7 +36,7 @@ public class BaturaTextInputLayout extends TextInputLayout {
 
     @Override
     public void setError(CharSequence error){
-        setErrorTextAppearance(android.support.design.R.style.TextAppearance_Design_Error);
+        //setErrorTextAppearance(android.support.design.R.style.TextAppearance_Design_Error);
         super.setError(error);
     }
 

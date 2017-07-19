@@ -2,7 +2,10 @@ package com.baturamobile.mvp;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.View;
 
 import com.baturamobile.design.R;
 
@@ -16,16 +19,22 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
 
 
     protected ProgressDialog progress;
+
     @Override
-    public void onStart(){
-        super.onStart();
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
         progress = new ProgressDialog(getContext());
         progress.setTitle(R.string.loading);
         progress.setMessage(getContext().getString(R.string.please_wait));
         progress.setCancelable(false);
+
+    }
+    @Override
+    public void onStart(){
+        super.onStart();
         if (getPresenter() != null){
             getPresenter().onStart();
         }
+
     }
     @Override
     public void onStop(){

@@ -21,4 +21,6 @@ public abstract class  BasePresenter<T extends BaseInteface> {
     protected void onResume(){}
 
     protected void onPause(){}
+
+
 }
