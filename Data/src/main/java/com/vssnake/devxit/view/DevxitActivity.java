@@ -31,6 +31,7 @@ public abstract  class DevxitActivity<V extends DevxitView, P extends DevxitPres
     @SuppressWarnings("uncheked")
     public DevxitActivityDelegate<V,P> getActivityDelegate(){
         if (activityDelegate == null){
+            initializeDependencieInjection();
             activityDelegate = new DevxitActivityDelegateImpl<>(this,observerController);
         }
         return activityDelegate;
@@ -149,12 +150,5 @@ public abstract  class DevxitActivity<V extends DevxitView, P extends DevxitPres
         getActivityDelegate().onActivityResult(requestCode,resultCode,data);
 
     }
-
-
-
-
-
-
-
 
 }

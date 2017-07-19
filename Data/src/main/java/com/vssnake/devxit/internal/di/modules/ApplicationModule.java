@@ -7,7 +7,6 @@ import com.vssnake.devxit.data.executor.JobExecutor;
 import com.vssnake.devxit.domain.usecase.DevxitUseCaseCallerFactory;
 import com.vssnake.devxit.executor.PostExecutionThread;
 import com.vssnake.devxit.executor.ThreadExecutor;
-import com.vssnake.devxit.modules.PermissionModule;
 import com.vssnake.devxit.observer.ObserverController;
 import com.vssnake.devxit.view.DevxitApp;
 import com.vssnake.devxit.view.UIThread;
@@ -69,10 +68,6 @@ public class ApplicationModule {
         return new ObserverController(postExecutionThread);
     }
 
-    @Provides @Singleton
-    PermissionModule providePermissionController(ObserverController observerController){
-        return new PermissionModule(observerController);
-    }
 
     @Provides @Singleton
     Bundle provideParametersFactory(){

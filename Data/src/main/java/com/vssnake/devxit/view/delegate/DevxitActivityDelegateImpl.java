@@ -3,7 +3,6 @@ package com.vssnake.devxit.view.delegate;
 import android.content.Intent;
 import android.os.Bundle;
 
-
 import com.vssnake.devxit.modules.DevxitModuleDelegate;
 import com.vssnake.devxit.observer.ObserverController;
 import com.vssnake.devxit.view.DevxitPresenter;
@@ -18,10 +17,9 @@ public class DevxitActivityDelegateImpl<V extends DevxitView,P extends DevxitPre
 
     protected DevxitDelegateCallback<V,P> devxitMVPDelegateCallback;
     protected DevxitMVPDelegate<V,P> devxitMVPDelegate;
-    protected DevxitModuleDelegate devxitModuleDelegate;
+    private DevxitModuleDelegate devxitModuleDelegate;
 
     ObserverController observerController;
-
 
     public DevxitActivityDelegateImpl(DevxitDelegateCallback<V,P> callback,ObserverController observerController){
         if (devxitMVPDelegateCallback != null){
@@ -45,30 +43,32 @@ public class DevxitActivityDelegateImpl<V extends DevxitView,P extends DevxitPre
 
     protected DevxitModuleDelegate getDevxitModuleDelegate(){
         if (devxitModuleDelegate == null){
-            devxitModuleDelegate = new DevxitModuleDelegate(devxitMVPDelegateCallback);
+            devxitModuleDelegate = new DevxitModuleDelegate(observerController);
         }
         return devxitModuleDelegate;
     }
 
     @Override
     public void onCreate(Bundle bundle) {
-        getDevxitMVPDelegate().initializeDependencieInjection();
+        //getDevxitMVPDelegate().initializeDependencieInjection();
 
     }
 
     @Override
     public void onDestroy() {
         getDevxitMVPDelegate().detachView();
+
     }
 
     @Override
     public void onPause() {
-
+        getDevxitModuleDelegate().onStop();
     }
 
     @Override
     public void onResume() {
         getDevxitMVPDelegate().attachView();
+        getDevxitModuleDelegate().onStart();
     }
 
     @Override
@@ -103,6 +103,5 @@ public class DevxitActivityDelegateImpl<V extends DevxitView,P extends DevxitPre
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        devxitModuleDelegate.onActivityResult(requestCode,resultCode,data);
     }
 }

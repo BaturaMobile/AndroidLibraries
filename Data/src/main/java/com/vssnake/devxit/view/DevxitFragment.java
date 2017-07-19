@@ -10,9 +10,12 @@ import android.view.View;
 
 import com.vssnake.devxit.internal.di.components.HasClientComponent;
 import com.vssnake.devxit.internal.di.modules.ActivityModule;
+import com.vssnake.devxit.observer.ObserverController;
 import com.vssnake.devxit.view.delegate.DevxitDelegateCallback;
 import com.vssnake.devxit.view.delegate.DevxitFragmentDelegate;
 import com.vssnake.devxit.view.delegate.DevxitFragmentDelegateImpl;
+
+import javax.inject.Inject;
 
 /**
  * Created by vssnake on 07/02/2017.
@@ -23,10 +26,14 @@ public abstract class DevxitFragment<V extends DevxitView, P extends DevxitPrese
 
     protected DevxitFragmentDelegate fragmentDelegate;
 
+    @Inject
+    ObserverController observerController;
+
     @SuppressWarnings("uncheked")
     protected DevxitFragmentDelegate<V,P> getFragmentDelegate(){
         if (fragmentDelegate == null){
-            fragmentDelegate = new DevxitFragmentDelegateImpl<>(this);
+            initializeDependencieInjection();
+            fragmentDelegate = new DevxitFragmentDelegateImpl<>(this,observerController);
         }
         return fragmentDelegate;
     }
