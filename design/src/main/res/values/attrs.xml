@@ -13,4 +13,12 @@
             <attr name="editable" format="boolean"/>
         </declare-styleable>
 
+
+    <declare-styleable name="BaturaImageText">
+        <attr name="titleText" format="string" />
+        <attr name="imageSrc" format="integer" />
+        <attr name="normalColor" format="color" />
+        <attr name="selectedColor" format="color" />
+    </declare-styleable>
+
 </resources>
