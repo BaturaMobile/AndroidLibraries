@@ -11,7 +11,6 @@ import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.RadioButton;
 
 /**
  * Created by vssnake on 02/08/2017.
@@ -26,12 +25,13 @@ public class BaturaImageText extends LinearLayoutCompat implements View.OnClickL
 
     private String mStyle = "";
 
+    private OnCheckedChangeListener mOnCheckedChangedListener;
+
     int mNormalColor;
     int mSelectedColor;
     Drawable mImageSrc;
     String mText;
-RadioButton
-    boolean selected = false;
+    boolean mSelected = false;
 
     public BaturaImageText(Context context) {
         super(context);
@@ -115,6 +115,7 @@ RadioButton
     }
 
     private void selected(){
+
         mTextView.setTextColor(mSelectedColor);
         mImageView.setColorFilter(mSelectedColor);
 
@@ -127,12 +128,13 @@ RadioButton
 
     @Override
     public void onClick(View v) {
-        if (!selected){
+        if (!mSelected){
             selected();
         }else{
             deselected();
         }
-        selected =! selected;
+        mSelected =! mSelected;
+        triggerOnCheckedChanged();
     }
 
 
@@ -144,7 +146,7 @@ RadioButton
         SavedState ss = new SavedState(superState);
         //end
 
-        ss.stateIsSelectable = this.selected;
+        ss.stateIsSelectable = this.mSelected;
 
         return ss;
     }
@@ -159,18 +161,32 @@ RadioButton
 
         SavedState ss = (SavedState) state;
 
-        this.selected = ss.stateIsSelectable;
+        this.mSelected = ss.stateIsSelectable;
 
-        if (selected){
+        if (mSelected){
             selected();
         }else{
             deselected();
         }
 
         super.onRestoreInstanceState(ss.getSuperState());
-        //end
 
 
+
+    }
+
+    public void setOnCheckedChangeListener(OnCheckedChangeListener onConnectorTypeFChanged) {
+        this.mOnCheckedChangedListener = onConnectorTypeFChanged;
+    }
+
+    private void triggerOnCheckedChanged(){
+        if (mOnCheckedChangedListener != null){
+            mOnCheckedChangedListener.onCheckedChanged(this,mSelected);
+        }
+    }
+
+    public interface OnCheckedChangeListener {
+        void onCheckedChanged(BaturaImageText baturaImageText,boolean checked);
     }
 
     static class SavedState extends BaseSavedState {
