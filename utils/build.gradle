@@ -1,0 +1,78 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+
+def dVersion = ext
+
+ext{
+    minSdk = 16
+    targetSdk = 16
+    buildToolsVersion = '26.0.1'
+    compileSdkVersion = 26
+
+    junitVersion = '4.12'
+    findbugsVersion = '3.0.0'
+    timberVersion = '4.5.1'
+
+    daggerVersion = '2.9'
+
+    androidSupportVersion = '25.1.0'
+    espressoVersion = '2.2.2'
+
+    robolecticVersion = '3.2.2'
+
+    mockitoCoreVersion = '2.0.42-beta'
+    powerMockApiMockitoVersion = '1.6.6'
+    powerMockJunitVerion = '1.6.6'
+}
+
+
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile 'com.android.support:appcompat-v7:' + dVersion.androidSupportVersion
+
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+
+    compile 'com.google.dagger:dagger-android:' + dVersion.daggerVersion
+    annotationProcessor 'com.google.dagger:dagger-compiler:' + dVersion.daggerVersion
+
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:' + dVersion.junitVersion
+    testCompile ('org.powermock:powermock-module-junit4:'+ dVersion.powerMockJunitVerion) {
+        exclude module: 'hamcrest-core'
+        exclude module: 'objenesis'
+    }
+    testCompile 'org.mockito:mockito-core:' + dVersion.mockitoCoreVersion
+    testCompile ('org.powermock:powermock-api-mockito2:'+ dVersion.powerMockApiMockitoVersion) {
+        exclude module: 'hamcrest-core'
+        exclude module: 'objenesis'
+    }
+    testCompile 'org.robolectric:robolectric:' + dVersion.robolecticVersion
+    testCompile 'org.robolectric:shadows-support-v4:'+ dVersion.robolecticVersion
+    testCompile 'org.khronos:opengl-api:gl1.1-android-2.1_r1'
+}

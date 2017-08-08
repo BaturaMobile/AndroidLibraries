@@ -8,7 +8,4 @@
         <item name="actionMenuTextColor">@android:color/black</item>
     </style>
 
-    <style name="AppTheme.ToolbarWhite" parent="A">
-        <item name="toolbarStyle">@style/ToolBarStyleWhite</item>
-    </style>
 </resources>
