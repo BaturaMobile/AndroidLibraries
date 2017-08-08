@@ -14,8 +14,6 @@ import com.baturamobile.design.GenericData;
 
 public class MainActivity extends AppCompatActivity {
 
-    BaturaEditText baturaEditText;
-
     BaturaTextInputLayout editTextInputLayout;
 
     BaturaTextInputLayout editTextEmailLayout;
@@ -37,21 +35,23 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.tt_toolbar);
 
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        if (getSupportActionBar() != null)
+        {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
 
+        button = findViewById(R.id.pil_show_error);
+        editTextInputLayout = findViewById(R.id.password_input_layout);
 
-        button = (BaturaButton) findViewById(R.id.pil_show_error);
-        editTextInputLayout = (BaturaTextInputLayout)findViewById(R.id.password_input_layout);
+        editTextEmailLayout = findViewById(R.id.email_input_layout);
+        editTextEmail = findViewById(R.id.email_input_edittext);
 
-        editTextEmailLayout = (BaturaTextInputLayout)findViewById(R.id.email_input_layout);
-        editTextEmail = (BaturaEditText)findViewById(R.id.email_input_edittext);
-
-        notEditableEditText = (BaturaEditText)findViewById(R.id.disbled_edittext);
+        notEditableEditText = findViewById(R.id.disbled_edittext);
 
 
         editTextEmailLayout.setEnabled(true);
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        verifyEmailButton = (BaturaButton)findViewById(R.id.email_verify_button);
+        verifyEmailButton = findViewById(R.id.email_verify_button);
 
         verifyEmailButton.setOnClickListener(new View.OnClickListener() {
             @Override
