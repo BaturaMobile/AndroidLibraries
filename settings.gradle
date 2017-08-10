@@ -1,1 +1,1 @@
-include ':app', ':design', ':utils', ':mvp'
+include ':app', ':design', ':utils', ':mvp', ':bluetooth'
