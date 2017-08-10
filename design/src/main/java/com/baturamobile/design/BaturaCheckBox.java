@@ -12,6 +12,7 @@ public class BaturaCheckBox extends AppCompatCheckBox {
 
     DelegateViewFont delegateViewFont;
 
+
     public BaturaCheckBox(Context context )
     {
         super( context );
