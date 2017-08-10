@@ -54,7 +54,7 @@ dependencies {
 
     compile 'com.google.android.gms:play-services-location:11.0.4'
 
-    compile project(':Designlibrary-android:design')
+    compile project(':design')
 
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
