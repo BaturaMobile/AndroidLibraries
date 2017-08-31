@@ -9,6 +9,7 @@ import android.os.Parcelable;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -32,6 +33,7 @@ public class BaturaImageText extends LinearLayoutCompat implements View.OnClickL
     Drawable mImageSrc;
     String mText;
     boolean mSelected = false;
+    int unitsTextSize;
 
     public BaturaImageText(Context context) {
         super(context);
@@ -99,9 +101,14 @@ public class BaturaImageText extends LinearLayoutCompat implements View.OnClickL
             mText =  attributes.getString(R.styleable.BaturaImageText_titleText);
             mNormalColor = attributes.getColor(R.styleable.BaturaImageText_normalColor, Color.GRAY);
             mSelectedColor = attributes.getColor(R.styleable.BaturaImageText_selectedColor, Color.BLACK);
+            unitsTextSize = attributes.getDimensionPixelSize(R.styleable.BaturaImageText_titleTextSize, 0);
 
 
             mTextView.setText(mText);
+
+            if (unitsTextSize != 0){
+                mTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, unitsTextSize);
+            }
 
 
             mImageView.setImageDrawable(mImageSrc);
@@ -111,6 +118,15 @@ public class BaturaImageText extends LinearLayoutCompat implements View.OnClickL
 
 
             attributes.recycle();
+        }
+    }
+
+    public void selected(boolean selected){
+        mSelected = selected;
+        if (mSelected){
+            selected();
+        }else{
+            deselected();
         }
     }
 

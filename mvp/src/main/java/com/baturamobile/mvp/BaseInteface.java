@@ -13,4 +13,6 @@ public interface BaseInteface {
     void loading(boolean loading);
 
     void onError(String error,Throwable throwable);
+
+    void finish();
 }

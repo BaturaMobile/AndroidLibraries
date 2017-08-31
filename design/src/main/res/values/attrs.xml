@@ -19,6 +19,7 @@
         <attr name="imageSrc" format="integer" />
         <attr name="normalColor" format="color" />
         <attr name="selectedColor" format="color" />
+        <attr name="titleTextSize" format="dimension"/>
     </declare-styleable>
 
 </resources>

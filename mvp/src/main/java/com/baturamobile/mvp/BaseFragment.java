@@ -78,6 +78,12 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
         super.onActivityResult(requestCode,resultCode,data);
     }
 
+    public void finish(){
+        if (getActivity() != null){
+            getActivity().finish();
+        }
+    }
+
 
 
 
