@@ -1,6 +1,8 @@
 package com.baturamobile.bluetoothle.wrapers;
 
 import android.bluetooth.BluetoothGattService;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -20,6 +22,7 @@ public class BluetoothServiceWrapper {
 
     private String uuid;
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public BluetoothServiceWrapper(BluetoothGattService bluetoothGattService,
                                    String serviceName){
         this.bluetoothGattService = bluetoothGattService;

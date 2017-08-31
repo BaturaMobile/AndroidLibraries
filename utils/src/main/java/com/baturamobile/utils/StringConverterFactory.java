@@ -1,4 +1,4 @@
-package com.baturamobile.data;
+package com.baturamobile.utils;
 
 import android.support.annotation.NonNull;
 

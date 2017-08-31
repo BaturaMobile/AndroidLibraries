@@ -1,6 +1,8 @@
 package com.baturamobile.bluetoothle.wrapers;
 
 import android.bluetooth.BluetoothGattCharacteristic;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 
 import java.util.UUID;
 
@@ -18,6 +20,7 @@ public class BluetoothCharacteristicWrapper {
         return mBluetoothGattCharacteristic;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public String getCharacteristicUUID(){
         return mBluetoothGattCharacteristic.getUuid().toString();
     }
@@ -92,36 +95,45 @@ public class BluetoothCharacteristicWrapper {
         return formatType;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public int getIntValue(){
        return getBluetoothGattCharacteristic().getIntValue(formatType.value,0);
     }
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public float getFloatValue(){
         return getBluetoothGattCharacteristic().getFloatValue(formatType.value,0);
     }
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public  String getStringValue(){
         return  getBluetoothGattCharacteristic().getStringValue(0);
     }
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public void setStringValue(String value){
         write = true;
         getBluetoothGattCharacteristic().setValue(value);
 
     }
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public void setBytesvalue(byte[] bytesvalue){
         getBluetoothGattCharacteristic().setValue(bytesvalue);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public boolean isWriteable(){
         return (getBluetoothGattCharacteristic().getProperties() & (BluetoothGattCharacteristic.PROPERTY_WRITE | BluetoothGattCharacteristic.PROPERTY_WRITE_NO_RESPONSE)) != 0;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public boolean isReadable(){
         return (getBluetoothGattCharacteristic().getProperties() & (BluetoothGattCharacteristic.PROPERTY_READ)) != 0;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public boolean isNotificable(){
         return (getBluetoothGattCharacteristic().getProperties() & (BluetoothGattCharacteristic.PROPERTY_NOTIFY)) != 0;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public UUID getUUID(){
        return getBluetoothGattCharacteristic().getUuid();
     }

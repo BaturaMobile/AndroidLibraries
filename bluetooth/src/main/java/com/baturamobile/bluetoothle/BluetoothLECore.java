@@ -6,6 +6,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 
 /**
  * Created by unai on 19/08/2016.
@@ -23,6 +25,7 @@ public class BluetoothLECore {
     private BluetoothState mBluetoothState;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public BluetoothLECore(Context context) throws BluetoothNotSupportedException {
 
 

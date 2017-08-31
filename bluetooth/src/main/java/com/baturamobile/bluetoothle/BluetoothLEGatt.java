@@ -7,6 +7,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothProfile;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import java.util.ArrayDeque;
@@ -20,6 +22,7 @@ import java.util.UUID;
  * Created by unai on 19/08/2016.
  */
 
+@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class BluetoothLEGatt {
 
     private static final String TAG = BluetoothLEGatt.class.getSimpleName();
@@ -47,6 +50,7 @@ public class BluetoothLEGatt {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public void connectToGatt(GattStatusInterface gattStatus){
 
 
@@ -73,10 +77,12 @@ public class BluetoothLEGatt {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public void writeCharacteristic(BluetoothGattCharacteristic characteristic){
         mBluetoothGatt.writeCharacteristic(characteristic);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public void notify(BluetoothGattCharacteristic characteristic){
         mBluetoothGatt.setCharacteristicNotification(characteristic,true);
 

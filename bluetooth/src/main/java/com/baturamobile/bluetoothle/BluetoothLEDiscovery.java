@@ -65,6 +65,7 @@ public class BluetoothLEDiscovery {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public void stopScan(){
 
         mStopScanningHandler.removeCallbacks(stopScanningHandler);
@@ -103,6 +104,7 @@ public class BluetoothLEDiscovery {
         mBluetoothScanner.startScan(scanFilters,scanSettings,scanCallbackApi21);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     private void scanBleDevicesLegacy(UUID[] uuids){
         mBluetoothLECore.getBluetoothAdapter().startLeScan(uuids,leScanCallback);
 
@@ -143,6 +145,7 @@ public class BluetoothLEDiscovery {
 
 
     private Runnable stopScanningHandler = new Runnable() {
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
         @Override
         public void run() {
             LogManager.d(TAG,"StopScan");
