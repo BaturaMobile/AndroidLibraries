@@ -40,6 +40,7 @@ public class BluetoothServiceWrapper {
         return uuidBluetoothCharacteristicWrapperMap.get(uuid);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public void addCharacteristic(BluetoothCharacteristicWrapper characteristicWrapper){
         uuidBluetoothCharacteristicWrapperMap.put(characteristicWrapper.getUUID().toString(),
                 characteristicWrapper);

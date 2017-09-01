@@ -43,6 +43,7 @@ public class BluetoothLEDiscovery {
     public void scanBleDevices(final UUID[] servicesUUID,
                                   final ScanResult scanResult) {
         mBluetoothLECore.enableAdapter(new BluetoothLECore.BluetoothState() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
             @Override
             public void onBluetoothChangeState(boolean enabled) {
 
