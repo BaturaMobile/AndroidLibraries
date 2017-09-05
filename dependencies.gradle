@@ -1,0 +1,71 @@
+ext {
+    //Version
+    supportLibrary = '26.0.2'
+    playServices = "11.2.0"
+    constraints = "1.0.2"
+    jodaTime = "2.9.9"
+    maps_utils = "0.5"
+    picasso = "2.5.2"
+    MPAndroidChart = "3.0.2"
+    butterKnife = "8.8.1"
+    retrofit = "2.3.0"
+    gson = "2.8.0"
+    dagger = "2.9"
+    espresso = "2.2.2"
+    junit = "4.12"
+    findbugsVersion = '3.0.0'
+    timberVersion = '4.5.1'
+    robolecticVersion = '3.2.2'
+    mockitoCoreVersion = '2.0.42-beta'
+    powerMockApiMockitoVersion = '1.6.6'
+    powerMockJunitVerion = '1.6.6'
+    khronosOpengl = "gl1.1-android-2.1_r1"
+
+    //Support Libraries dependencies
+    supportDependencies = [
+            design           : "com.android.support:design:${supportLibrary}",
+            recyclerView     : "com.android.support:recyclerview-v7:${supportLibrary}",
+            cardView         : "com.android.support:cardview-v7:${supportLibrary}",
+            appCompat        : "com.android.support:appcompat-v7:${supportLibrary}",
+            supportAnnotation: "com.android.support:support-annotations:${supportLibrary}",
+            coreUtils        :  "com.android.support:support-core-utils:${supportLibrary}",
+            coreUI           :  "com.android.support:support-core-ui:${supportLibrary}"
+    ]
+
+    //Play services Libraries
+    playServices = [
+            maps        :  "com.google.android.gms:play-services-maps:${playServices}",
+            location    : "com.google.android.gms:play-services-location:${playServices}",
+            firebase    : "com.google.firebase:firebase-database:${playServices}"
+    ]
+
+
+    //Various
+    various = [
+            constraints         : "com.android.support.constraint:constraint-layout:${constraints}",
+            jodaTime            : "joda-time:joda-time:${jodaTime}",
+            maps_utils          : "com.google.maps.android:android-maps-utils:${maps_utils}",
+            picasso             : "com.squareup.picasso:picasso:${picasso}",
+            androidCharts       : "com.github.PhilJay:MPAndroidChart:v${MPAndroidChart}",
+            butterKnife         : "com.jakewharton:butterknife:${butterKnife}",
+            butterKnifeCompiler : "com.jakewharton:butterknife-compiler:${butterKnife}",
+            retrofit            : "com.squareup.retrofit2:retrofit:${retrofit}",
+            retrofitGson        : "com.squareup.retrofit2:converter-gson:${retrofit}",
+            gson                : "com.google.code.gson:gson:${gson}",
+            dagger              : "com.google.dagger:dagger-android:${dagger}",
+            daggerCompiler      : "com.google.dagger:dagger-compiler:${dagger}"
+
+    ]
+
+    testing = [
+            espressoCore        : "com.android.support.test.espresso:espresso-core:${espresso}",
+            junit               : "junit:junit:${junit}",
+            powerMockJunit      : "org.powermock:powermock-module-junit4:${powerMockJunitVerion}",
+            mockitoCore         : "org.mockito:mockito-core:${mockitoCoreVersion}",
+            powerMockMockito2   : "org.powermock:powermock-api-mockito2:${powerMockApiMockitoVersion}",
+            robolectric         : "org.robolectric:robolectric:${robolecticVersion}",
+            robolectircShadow   : "org.robolectric:shadows-support-v4:${robolecticVersion}",
+            kronosOpengl        : "org.khronos:opengl-api:${khronosOpengl}"
+
+    ]
+}
