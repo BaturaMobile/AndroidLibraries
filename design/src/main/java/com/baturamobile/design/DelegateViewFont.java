@@ -27,10 +27,19 @@ public class DelegateViewFont {
 
         if ( !delegateTextView.isInEditMode() )
         {
+            String fontFamlityCompat = null;
             if (attrs != null){
                 TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.DesignCustomFont);
                 mStyle = attributes.getString(R.styleable.DesignCustomFont_BaturaFontType);
+                fontFamlityCompat = attributes.getString(R.styleable.AppCompatTextView_fontFamily);
 
+                if (attributes.hasValue(android.support.v7.appcompat.R.styleable.TextAppearance_android_fontFamily)
+                        || attributes.hasValue(android.support.v7.appcompat.R.styleable.TextAppearance_fontFamily)) {
+                    int fontFamilyId = attributes.hasValue(android.support.v7.appcompat.R.styleable.TextAppearance_android_fontFamily)
+                            ? android.support.v7.appcompat.R.styleable.TextAppearance_android_fontFamily
+                            : android.support.v7.appcompat.R.styleable.TextAppearance_fontFamily;
+                    fontFamlityCompat = attributes.getString(fontFamilyId);
+                }
                 attributes.recycle();
             }
 
@@ -39,7 +48,7 @@ public class DelegateViewFont {
             if ( mStyle != null && !mStyle.isEmpty() )
             {
                 typeFace = Typeface.createFromAsset( context.getAssets(), mStyle );
-            }else if (!GenericData.GENERIC_FONT.isEmpty()){
+            }else if (!GenericData.GENERIC_FONT.isEmpty() && fontFamlityCompat == null){
                 typeFace = Typeface.createFromAsset( context.getAssets(), GenericData.GENERIC_FONT );
             }
             if (typeFace != null){
