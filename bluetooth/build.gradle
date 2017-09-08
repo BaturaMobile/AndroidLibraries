@@ -27,3 +27,16 @@ dependencies {
 
     implementation supportDependencies.appCompat
 }
+
+configurations.all {
+    resolutionStrategy {
+        eachDependency { details ->
+            if(details.requested.group == 'com.android.support')
+            {
+                if(details.requested.name != 'multidex' && details.requested.name != 'multidex-instrumentation') {
+                    details.useVersion "${supportLibrary}"
+                }
+            }
+        }
+    }
+}
