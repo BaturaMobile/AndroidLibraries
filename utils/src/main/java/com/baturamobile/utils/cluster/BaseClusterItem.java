@@ -12,10 +12,19 @@ public abstract class BaseClusterItem implements ClusterItem {
 
     protected Bitmap cachedBitmap;
 
+    public float alpha = 1;
+
+    private boolean enabled = true;
+
 
     protected abstract void  permuteResourceIcon();
 
     public Bitmap getCachedBitmap() {
         return cachedBitmap;
+    }
+
+    public boolean isEnabled()
+    {
+        return enabled;
     }
 }

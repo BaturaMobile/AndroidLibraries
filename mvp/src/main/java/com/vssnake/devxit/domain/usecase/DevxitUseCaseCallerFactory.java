@@ -97,6 +97,7 @@ public class DevxitUseCaseCallerFactory {
             @Override
             public void onErrorException(final ErrorBundle errorBundle) {
 
+                Log.e(TAG,"onError",errorBundle.getException());
                 if (useCaseCallbackWeakReference != null &&
                         useCaseCallbackWeakReference.get() != null){
 
