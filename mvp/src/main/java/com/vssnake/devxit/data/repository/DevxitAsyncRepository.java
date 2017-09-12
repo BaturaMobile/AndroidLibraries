@@ -70,7 +70,9 @@ public class DevxitAsyncRepository<K,V extends UniqueObject<K>>
         if (policy.useCache()){
             try {
                 valueToRead = getValueFromCache(key,valueAsync);
-                valueAsync.onResult(valueToRead);
+                if (valueToRead != null){
+                    valueAsync.onResult(valueToRead);
+                }
             } catch (Throwable throwable) {
                 valueAsync.onFail(throwable);
             }
@@ -101,7 +103,9 @@ public class DevxitAsyncRepository<K,V extends UniqueObject<K>>
         if (policy.useCache()){
             try {
                 valuesToRead = getValuesFromCache();
-                valuesAsync.onResult(valuesToRead);
+                if (valuesToRead != null){
+                    valuesAsync.onResult(valuesToRead);
+                }
             } catch (Throwable throwable) {
                 valuesAsync.onFail(throwable);
             }

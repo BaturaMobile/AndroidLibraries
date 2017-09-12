@@ -6,13 +6,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
+import com.vssnake.devxit.executor.PostExecutionThread;
 import com.vssnake.devxit.internal.di.components.ApplicationComponent;
 import com.vssnake.devxit.internal.di.components.HasClientComponent;
 import com.vssnake.devxit.internal.di.modules.ActivityModule;
 import com.vssnake.devxit.observer.ObserverController;
-import com.vssnake.devxit.view.delegate.DevxitDelegateCallback;
-import com.vssnake.devxit.view.delegate.DevxitActivityDelegateImpl;
 import com.vssnake.devxit.view.delegate.DevxitActivityDelegate;
+import com.vssnake.devxit.view.delegate.DevxitActivityDelegateImpl;
+import com.vssnake.devxit.view.delegate.DevxitDelegateCallback;
 
 import javax.inject.Inject;
 
@@ -28,15 +29,16 @@ public abstract  class DevxitActivity<V extends DevxitView, P extends DevxitPres
     @Inject
     ObserverController observerController;
 
+    @Inject
+    PostExecutionThread postExecutionThread;
+
     @SuppressWarnings("uncheked")
     public DevxitActivityDelegate<V,P> getActivityDelegate(){
         if (activityDelegate == null){
             initializeDependencieInjection();
-            activityDelegate = new DevxitActivityDelegateImpl<>(this,observerController);
+            activityDelegate = new DevxitActivityDelegateImpl<>(this,observerController,postExecutionThread);
         }
         return activityDelegate;
-
-
 
     }
 
@@ -94,8 +96,7 @@ public abstract  class DevxitActivity<V extends DevxitView, P extends DevxitPres
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivityDelegate().onCreate(savedInstanceState);
-
+        getActivityDelegate().onCreate(savedInstanceState,this);
     }
 
     @Override protected void onDestroy() {
@@ -149,6 +150,11 @@ public abstract  class DevxitActivity<V extends DevxitView, P extends DevxitPres
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         getActivityDelegate().onActivityResult(requestCode,resultCode,data);
 
+    }
+
+    @Override
+    public void onLoading(boolean loading) {
+        getActivityDelegate().onLoading(loading);
     }
 
 }

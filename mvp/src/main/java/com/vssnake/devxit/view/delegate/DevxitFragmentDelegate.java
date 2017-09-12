@@ -1,6 +1,7 @@
 package com.vssnake.devxit.view.delegate;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,7 +20,7 @@ public interface DevxitFragmentDelegate<V extends DevxitView, P extends DevxitPr
      *
      * @param saved The bundle
      */
-    void onCreate(Bundle saved);
+    void onCreate(Bundle saved,Context context);
 
     /**
      * Must be called from {@link Fragment#onDestroy()}
@@ -82,4 +83,6 @@ public interface DevxitFragmentDelegate<V extends DevxitView, P extends DevxitPr
      * Must be called from {@link Fragment#onSaveInstanceState(Bundle)}
      */
     void onSaveInstanceState(Bundle outState);
+
+    void onLoading(boolean loading);
 }

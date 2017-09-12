@@ -1,6 +1,7 @@
 package com.vssnake.devxit.view.delegate;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -16,7 +17,7 @@ public interface DevxitActivityDelegate<V extends DevxitView, P extends DevxitPr
      * This method must be called from {@link Activity#onCreate(Bundle)}.
      * This method internally creates the presenter and attaches the view to it.
      */
-    void onCreate(Bundle bundle);
+    void onCreate(Bundle bundle,Context context);
 
     /**
      * This method must be called from {@link Activity#onDestroy()}}.
@@ -65,4 +66,6 @@ public interface DevxitActivityDelegate<V extends DevxitView, P extends DevxitPr
     void onPostCreate(Bundle savedInstanceState);
 
     void onActivityResult(int requestCode, int resultCode, Intent data);
+
+    void onLoading(boolean loading);
 }

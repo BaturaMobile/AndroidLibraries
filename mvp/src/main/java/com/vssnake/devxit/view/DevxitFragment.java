@@ -30,10 +30,11 @@ public abstract class DevxitFragment<V extends DevxitView, P extends DevxitPrese
     ObserverController observerController;
 
     @SuppressWarnings("uncheked")
-    protected DevxitFragmentDelegate<V,P> getFragmentDelegate(){
-        if (fragmentDelegate == null){
+    protected DevxitFragmentDelegate<V, P> getFragmentDelegate() {
+        if (fragmentDelegate == null) {
             initializeDependencieInjection();
-            fragmentDelegate = new DevxitFragmentDelegateImpl<>(this,observerController);
+            fragmentDelegate = new DevxitFragmentDelegateImpl<>(getContext(),
+                    this, observerController);
         }
         return fragmentDelegate;
     }
@@ -66,7 +67,7 @@ public abstract class DevxitFragment<V extends DevxitView, P extends DevxitPrese
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getFragmentDelegate().onCreate(savedInstanceState);
+        getFragmentDelegate().onCreate(savedInstanceState,getActivity());
     }
 
     @Override public void onDestroy() {
@@ -121,5 +122,10 @@ public abstract class DevxitFragment<V extends DevxitView, P extends DevxitPrese
 
     @Override public DevxitApp getDevxitApp(){
         return (DevxitApp)getActivity().getApplication();
+    }
+
+    @Override
+    public void onLoading(boolean loading) {
+        getFragmentDelegate().onLoading(loading);
     }
 }

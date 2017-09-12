@@ -1,6 +1,7 @@
 package com.vssnake.devxit.view.delegate;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -21,16 +22,24 @@ public class DevxitFragmentDelegateImpl<V extends DevxitView,P extends DevxitPre
     protected DevxitDelegateCallback<V, P> devxitDelegateCallback;
     protected DevxitMVPDelegate<V, P> devxitMVPDelegate;
     protected DevxitModuleDelegate devxitModuleDelegate;
+    protected DevxitLoadingDelegate devxitLoadingDelegate;
+    private Context mContext;
 
     ObserverController observerController;
 
-    public DevxitFragmentDelegateImpl(DevxitDelegateCallback<V,P> devxitDelegateCallback,
+    public DevxitFragmentDelegateImpl(Context context,DevxitDelegateCallback<V,P> devxitDelegateCallback,
                                       ObserverController observerController){
         if (devxitDelegateCallback == null) {
             throw new NullPointerException("MvpDelegateCallback is null!");
         }
         this.observerController = observerController;
         this.devxitDelegateCallback = devxitDelegateCallback;
+        this.mContext = context;
+        initLoadingDelegate(mContext);
+    }
+
+    private void initLoadingDelegate(Context context){
+        devxitLoadingDelegate = new DevxitLoadingDelegate(context);
     }
 
     protected DevxitMVPDelegate<V, P> getDevxitMVPDelegate() {
@@ -50,7 +59,8 @@ public class DevxitFragmentDelegateImpl<V extends DevxitView,P extends DevxitPre
 
 
     @Override
-    public void onCreate(Bundle saved) {
+    public void onCreate(Bundle saved,Context context) {
+        initLoadingDelegate(context);
         //getDevxitMVPDelegate().initializeDependencieInjection();
     }
 
@@ -110,5 +120,10 @@ public class DevxitFragmentDelegateImpl<V extends DevxitView,P extends DevxitPre
     @Override
     public void onSaveInstanceState(Bundle outState) {
 
+    }
+
+    @Override
+    public void onLoading(boolean loading) {
+        devxitLoadingDelegate.loading(loading);
     }
 }
