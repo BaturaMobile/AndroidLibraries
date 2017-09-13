@@ -1,7 +1,11 @@
 package com.vssnake.devxit.data.repository;
 
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 
+import com.baturamobile.mvp.Utils;
 import com.vssnake.devxit.data.repository.datasource.ReadAsyncDataSource;
 import com.vssnake.devxit.data.repository.datasource.ReadDataSource;
 import com.vssnake.devxit.data.repository.datasource.ReadWriteDataSource;
@@ -43,12 +47,17 @@ public class DevxitAsyncRepository<K,V extends UniqueObject<K>>
     private final WriteDataSource<K,V> writeDataSource;
     private final ReadWriteDataSource<K,V> cacheDataSource;
 
+    HandlerThread thread = new HandlerThread("CacheHandlerThread");
+    private final Handler cacheHandler;
+
     public DevxitAsyncRepository(@Nullable ReadDataSource<K,V> readDataSource,
                             @Nullable WriteDataSource<K,V> writeDataSource,
                             @Nullable ReadWriteDataSource<K,V> cacheDataSource){
         this.readDataSource = readDataSource;
         this.writeDataSource = writeDataSource;
         this.cacheDataSource = cacheDataSource;
+        thread.start();
+        this.cacheHandler = new Handler(thread.getLooper());
     }
 
 
@@ -62,21 +71,26 @@ public class DevxitAsyncRepository<K,V extends UniqueObject<K>>
        getByKey(key, ReadPolicy.READ_ALL,valueAsync);
     }
 
-    public void getByKey(K key, ReadPolicy policy,DevxitGetValueAsync<V> valueAsync){
+    public void getByKey(final K key, ReadPolicy policy,final DevxitGetValueAsync<V> valueAsync){
         validateKey(key);
 
-        V valueToRead;
+        final V valueToRead;
 
         if (policy.useCache()){
-            try {
-                valueToRead = getValueFromCache(key,valueAsync);
-                if (valueToRead != null){
-                    valueAsync.onResult(valueToRead);
-                }
-            } catch (Throwable throwable) {
-                valueAsync.onFail(throwable);
-            }
-
+                cacheHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        V valueToRead = null;
+                        try {
+                            valueToRead = getValueFromCache(key,valueAsync);
+                        } catch (Throwable throwable) {
+                            valueAsync.onFail(throwable);
+                        }
+                        if (valueToRead != null){
+                            valueAsync.onResult(valueToRead);
+                        }
+                    }
+                });
         }
 
         if (policy.useReadable()){
@@ -84,7 +98,17 @@ public class DevxitAsyncRepository<K,V extends UniqueObject<K>>
                 valueToRead = getValueFromReadDataSource(key);
                 valueAsync.onResult(valueToRead);
                 if (valueToRead != null){
-                    populateCache(valueToRead);
+                    cacheHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                populateCache(valueToRead);
+                            } catch (Throwable throwable) {
+                                valueAsync.onFail(throwable);
+                            }
+                        }
+                    });
+
                 }
             } catch (Throwable throwable) {
                 valueAsync.onFail(throwable);
@@ -97,18 +121,25 @@ public class DevxitAsyncRepository<K,V extends UniqueObject<K>>
         getAll(ReadPolicy.READ_ALL,valuesAsync);
     }
 
-    public void getAll(ReadPolicy policy,DevxitGetValuesAsync<V> valuesAsync){
-        Collection<V> valuesToRead;
+    public void getAll(ReadPolicy policy,final DevxitGetValuesAsync<V> valuesAsync){
+        final Collection<V> valuesToRead;
 
         if (policy.useCache()){
-            try {
-                valuesToRead = getValuesFromCache();
-                if (valuesToRead != null){
-                    valuesAsync.onResult(valuesToRead);
+            cacheHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    Collection<V> valuesToRead = null;
+                    try {
+                        valuesToRead = getValuesFromCache();
+                        if (valuesToRead != null){
+                            valuesAsync.onResult(valuesToRead);
+                        }
+                    } catch (Throwable throwable) {
+                        valuesAsync.onFail(throwable);
+                    }
                 }
-            } catch (Throwable throwable) {
-                valuesAsync.onFail(throwable);
-            }
+            });
+
 
         }
 
@@ -117,7 +148,13 @@ public class DevxitAsyncRepository<K,V extends UniqueObject<K>>
                 valuesToRead = getValuesFromReadDataSource();
                 valuesAsync.onResult(valuesToRead);
                 if (valuesToRead != null){
-                    populateCache(valuesToRead);
+                    cacheHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            populateCache(valuesToRead);
+                        }
+                    });
+
                 }
             } catch (Throwable throwable) {
                 valuesAsync.onFail(throwable);
@@ -148,13 +185,18 @@ public class DevxitAsyncRepository<K,V extends UniqueObject<K>>
 
 
     @Override
-    public boolean deleteByKey(K key) {
+    public boolean deleteByKey(final K key) {
         boolean deleted = false;
         if (writeDataSource != null){
             deleted = writeDataSource.deleteByKey(key);
         }
         if (cacheDataSource != null){
-            cacheDataSource.deleteByKey(key);
+            cacheHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    cacheDataSource.deleteByKey(key);
+                }
+            });
         }
         return deleted;
     }
@@ -166,14 +208,30 @@ public class DevxitAsyncRepository<K,V extends UniqueObject<K>>
             deleted = writeDataSource.deleteAll();
         }
         if (cacheDataSource != null){
-            cacheDataSource.deleteAll();
+            cacheHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    cacheDataSource.deleteAll();
+                }
+            });
+
         }
         return deleted;
     }
 
-    private void populateCache(V valueToRead) throws Throwable {
+    private void populateCache(final V valueToRead) throws Throwable {
         assert cacheDataSource != null;
-        cacheDataSource.putOrUpdateValue(valueToRead);
+        cacheHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    cacheDataSource.putOrUpdateValue(valueToRead);
+                } catch (Throwable throwable) {
+                    Utils.throwError(throwable);
+                }
+            }
+        });
+
     }
 
     private Collection<V> getValuesFromReadDataSource() throws Throwable {
