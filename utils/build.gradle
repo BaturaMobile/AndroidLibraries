@@ -45,6 +45,7 @@ dependencies {
 
     implementation various.maps_utils
     implementation playServices.maps
+    implementation playServices.core
     implementation supportDependencies.recyclerView
 
 
