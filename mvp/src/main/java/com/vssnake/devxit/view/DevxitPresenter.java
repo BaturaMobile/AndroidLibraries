@@ -28,4 +28,16 @@ public interface DevxitPresenter<V extends DevxitView> {
      */
     @UiThread
     void detachView();
+
+    /**
+     * Will be called when the Is need to load the data of the screen
+     */
+    @UiThread
+    void visible();
+
+    /**
+     * Will be called when is necessary to close the view
+     */
+    @UiThread
+    void onViewNeedFinishing();
 }

@@ -55,4 +55,12 @@ public abstract class DevxitBasePresenter<V extends DevxitView> implements Devxi
      * (Keep in mind that)
      */
     public abstract void visible();
+
+    /**
+     * Will be override when is necessary to close the view
+     */
+    @Override
+    public void onViewNeedFinishing() {
+
+    }
 }

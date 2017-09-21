@@ -10,6 +10,7 @@ import com.vssnake.devxit.executor.PostExecutionThread;
 import com.vssnake.devxit.internal.di.components.ApplicationComponent;
 import com.vssnake.devxit.internal.di.components.HasClientComponent;
 import com.vssnake.devxit.internal.di.modules.ActivityModule;
+import com.vssnake.devxit.modules.PopUPModule;
 import com.vssnake.devxit.observer.ObserverController;
 import com.vssnake.devxit.view.delegate.DevxitActivityDelegate;
 import com.vssnake.devxit.view.delegate.DevxitActivityDelegateImpl;
@@ -22,12 +23,15 @@ import javax.inject.Inject;
  */
 
 public abstract  class DevxitActivity<V extends DevxitView, P extends DevxitPresenter<V>>
-        extends AppCompatActivity implements DevxitDelegateCallback<V,P>,DevxitView{
+        extends AppCompatActivity implements DevxitDelegateCallback<V,P>,DevxitView,CommonViewInterface {
 
     public DevxitActivityDelegate<V,P> activityDelegate;
 
     @Inject
     ObserverController observerController;
+
+    @Inject
+    PopUPModule popUPModule;
 
     @Inject
     PostExecutionThread postExecutionThread;
@@ -36,7 +40,7 @@ public abstract  class DevxitActivity<V extends DevxitView, P extends DevxitPres
     public DevxitActivityDelegate<V,P> getActivityDelegate(){
         if (activityDelegate == null){
             initializeDependencieInjection();
-            activityDelegate = new DevxitActivityDelegateImpl<>(this,observerController,postExecutionThread);
+            activityDelegate = new DevxitActivityDelegateImpl<>(this,observerController,postExecutionThread, popUPModule);
         }
         return activityDelegate;
 
@@ -155,6 +159,21 @@ public abstract  class DevxitActivity<V extends DevxitView, P extends DevxitPres
     @Override
     public void onLoading(boolean loading) {
         getActivityDelegate().onLoading(loading);
+    }
+
+    @Override
+    public void onError(String title, String error) {
+        getActivityDelegate().onError(title,error);
+    }
+
+    @Override
+    public void onRetryError(String title, String error) {
+        getActivityDelegate().onRetryError(title,error);
+    }
+
+    @Override
+    public DevxitActivity<V, P> getDevxitActivity() {
+        return this;
     }
 
 }

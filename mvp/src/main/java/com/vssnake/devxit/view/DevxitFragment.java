@@ -1,6 +1,7 @@
 package com.vssnake.devxit.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.view.View;
 import com.vssnake.devxit.internal.di.components.HasClientComponent;
 import com.vssnake.devxit.internal.di.modules.ActivityModule;
 import com.vssnake.devxit.observer.ObserverController;
+import com.vssnake.devxit.modules.PopUPModule;
 import com.vssnake.devxit.view.delegate.DevxitDelegateCallback;
 import com.vssnake.devxit.view.delegate.DevxitFragmentDelegate;
 import com.vssnake.devxit.view.delegate.DevxitFragmentDelegateImpl;
@@ -21,7 +23,7 @@ import javax.inject.Inject;
  * Created by vssnake on 07/02/2017.
  */
 public abstract class DevxitFragment<V extends DevxitView, P extends DevxitPresenter<V>> extends Fragment
-        implements DevxitDelegateCallback<V, P>, DevxitView  {
+        implements DevxitDelegateCallback<V, P>, DevxitView,CommonViewInterface {
 
 
     protected DevxitFragmentDelegate fragmentDelegate;
@@ -29,23 +31,36 @@ public abstract class DevxitFragment<V extends DevxitView, P extends DevxitPrese
     @Inject
     ObserverController observerController;
 
+    @Inject
+    PopUPModule popUPModule;
+
     @SuppressWarnings("uncheked")
     protected DevxitFragmentDelegate<V, P> getFragmentDelegate() {
         if (fragmentDelegate == null) {
             initializeDependencieInjection();
-            fragmentDelegate = new DevxitFragmentDelegateImpl<>(getContext(),
-                    this, observerController);
+            fragmentDelegate = new DevxitFragmentDelegateImpl<>(this,
+                    this, observerController, popUPModule);
         }
         return fragmentDelegate;
     }
 
     @SuppressWarnings("unchecked")
     protected <C> C getComponent(Class<C> componentType) {
-        return componentType.cast(((HasClientComponent<C>) getActivity()).getComponent());
+        return componentType.cast(((HasClientComponent<C>) getDevxitActivity()).getComponent());
     }
 
     protected ActivityModule getActivityModule(){
-        return ((DevxitActivity)getActivity()).getActivityModule();
+        return ((DevxitActivity) getDevxitActivity()).getActivityModule();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        getFragmentDelegate().onActivityResult(requestCode,resultCode,data);
+    }
+
+    @Override
+    public void initializeDependencieInjection() {
+
     }
 
     @NonNull
@@ -67,7 +82,7 @@ public abstract class DevxitFragment<V extends DevxitView, P extends DevxitPrese
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getFragmentDelegate().onCreate(savedInstanceState,getActivity());
+        getFragmentDelegate().onCreate(savedInstanceState, getDevxitActivity());
     }
 
     @Override public void onDestroy() {
@@ -116,16 +131,33 @@ public abstract class DevxitFragment<V extends DevxitView, P extends DevxitPrese
     }
 
     @Override public AppCompatActivity getViewActivity(){
-       return (AppCompatActivity) getActivity();
+       return getDevxitActivity();
+    }
+
+
+    @Override
+    public void onError(String title, String error)
+    {
+        getFragmentDelegate().onError(title,error);
+    }
+
+    @Override
+    public void onRetryError(String title, String error) {
+        getFragmentDelegate().onRetryError(title,error);
     }
 
 
     @Override public DevxitApp getDevxitApp(){
-        return (DevxitApp)getActivity().getApplication();
+        return (DevxitApp) getDevxitActivity().getApplication();
     }
 
     @Override
     public void onLoading(boolean loading) {
         getFragmentDelegate().onLoading(loading);
+    }
+
+    @Override
+    public DevxitActivity getDevxitActivity() {
+        return (DevxitActivity) getActivity();
     }
 }

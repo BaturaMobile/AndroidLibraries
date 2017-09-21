@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:id="@+id/popup_main_container"
+    android:background="@android:color/transparent">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.baturamobile.design.BaturaTextView
+                android:id="@+id/popup_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/popup_main_image"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:paddingTop="8dp"
+                android:text="New Text"
+                tools:text="Cliente IBIL" />
+
+            <com.baturamobile.design.BaturaTextView
+                android:id="@+id/popup_descip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/popup_title"
+                android:layout_centerHorizontal="true"
+                android:autoLink="all"
+                android:gravity="center"
+                android:paddingBottom="12dp"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:paddingTop="8dp"
+                android:text="New Text"
+                android:textSize="18sp"
+                tools:text="Para realizar la carga desde la App tienes que ser Cliente IBIL" />
+
+            <com.baturamobile.design.BaturaTextView
+                android:id="@+id/popup_descip_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/popup_descip"
+                android:layout_centerHorizontal="true"
+                android:autoLink="all"
+                android:gravity="center"
+                android:paddingBottom="12dp"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:paddingTop="8dp"
+                android:text="New Text"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:visibility="visible"
+                tools:text="ATENCIÓN AL CLIENTE \n 902 540 810 \n atencionalcliente@ibil.es" />
+
+            <LinearLayout
+                android:id="@+id/popup_style1_con"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/popup_descip_2"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.baturamobile.design.BaturaTextView
+                    android:id="@+id/popup_style1_btn1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:textAllCaps="true"
+                    tools:text="AMPLIAR SALDO" />
+
+                <com.baturamobile.design.BaturaTextView
+                    android:id="@+id/popup_style1_btn2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:textAllCaps="true"
+                    tools:text="AMPLIAR SALDO" />
+            </LinearLayout>
+
+            <com.baturamobile.design.BaturaTextView
+                android:id="@+id/popup_style2_btn1"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_alignLeft="@+id/popup_descip_2"
+                android:layout_alignStart="@+id/popup_descip_2"
+                android:layout_below="@+id/popup_descip_2"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:minWidth="45dp"
+                android:paddingLeft="25dp"
+                android:textAllCaps="true"
+                android:textSize="20sp"
+                android:visibility="visible"
+                tools:text="AMPLIAR SALDO" />
+
+            <com.baturamobile.design.BaturaTextView
+                android:id="@+id/popup_style2_btn2"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/popup_style2_btn1"
+                android:layout_below="@+id/popup_style2_btn1"
+                android:gravity="center"
+                android:minWidth="45dp"
+                android:paddingRight="25dp"
+                android:textAllCaps="true"
+                android:textIsSelectable="true"
+                android:textSize="20sp"
+                android:visibility="visible"
+                tools:text="Ok" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/popup_main_image"
+                android:layout_width="match_parent"
+                android:layout_height="125dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

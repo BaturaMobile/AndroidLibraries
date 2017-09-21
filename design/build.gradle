@@ -29,6 +29,7 @@ dependencies {
     implementation supportDependencies.appCompat
     implementation supportDependencies.design
     implementation supportDependencies.recyclerView
+    implementation supportDependencies.cardView
     implementation various.picasso
     implementation various.constraints
 

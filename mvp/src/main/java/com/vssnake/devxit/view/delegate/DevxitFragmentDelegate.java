@@ -2,6 +2,7 @@ package com.vssnake.devxit.view.delegate;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -85,4 +86,10 @@ public interface DevxitFragmentDelegate<V extends DevxitView, P extends DevxitPr
     void onSaveInstanceState(Bundle outState);
 
     void onLoading(boolean loading);
+
+    void onActivityResult(int requestCode, int resultCode, Intent data);
+
+    void onError(String title, String error);
+
+    void onRetryError(String title, String error);
 }

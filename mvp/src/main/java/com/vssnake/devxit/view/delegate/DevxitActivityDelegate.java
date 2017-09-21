@@ -68,4 +68,8 @@ public interface DevxitActivityDelegate<V extends DevxitView, P extends DevxitPr
     void onActivityResult(int requestCode, int resultCode, Intent data);
 
     void onLoading(boolean loading);
+
+    void onError(String title, String error);
+
+    void onRetryError(String title, String error);
 }

@@ -2,6 +2,7 @@ package com.vssnake.devxit.view.delegate;
 
 import android.content.Context;
 
+import com.vssnake.devxit.view.DevxitActivity;
 import com.vssnake.devxit.view.DevxitApp;
 import com.vssnake.devxit.view.DevxitPresenter;
 import com.vssnake.devxit.view.DevxitView;
@@ -25,4 +26,6 @@ public interface DevxitDelegateCallback<V extends DevxitView, P extends DevxitPr
     Context getContext();
 
     DevxitApp getDevxitApp();
+
+    DevxitActivity getDevxitActivity();
 }

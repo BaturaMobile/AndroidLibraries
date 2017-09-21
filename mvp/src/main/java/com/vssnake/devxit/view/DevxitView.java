@@ -11,4 +11,8 @@ public interface DevxitView {
     AppCompatActivity getViewActivity();
 
     void onLoading(boolean loading);
+
+    void onError(String title,String error);
+
+    void onRetryError(String title,String error);
 }

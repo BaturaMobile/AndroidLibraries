@@ -2,12 +2,15 @@ package com.vssnake.devxit.view.delegate;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.vssnake.devxit.modules.DevxitModuleDelegate;
 import com.vssnake.devxit.observer.ObserverController;
+import com.vssnake.devxit.modules.PopUPModule;
+import com.vssnake.devxit.view.DevxitFragment;
 import com.vssnake.devxit.view.DevxitPresenter;
 import com.vssnake.devxit.view.DevxitView;
 
@@ -23,19 +26,21 @@ public class DevxitFragmentDelegateImpl<V extends DevxitView,P extends DevxitPre
     protected DevxitMVPDelegate<V, P> devxitMVPDelegate;
     protected DevxitModuleDelegate devxitModuleDelegate;
     protected DevxitLoadingDelegate devxitLoadingDelegate;
-    private Context mContext;
+    PopUPModule mPopupModule;
+    private DevxitFragment mDevxitFragment;
 
     ObserverController observerController;
 
-    public DevxitFragmentDelegateImpl(Context context,DevxitDelegateCallback<V,P> devxitDelegateCallback,
-                                      ObserverController observerController){
+    public DevxitFragmentDelegateImpl(DevxitFragment devxitFragment, DevxitDelegateCallback<V,P> devxitDelegateCallback,
+                                      ObserverController observerController, PopUPModule popUPModule){
         if (devxitDelegateCallback == null) {
             throw new NullPointerException("MvpDelegateCallback is null!");
         }
         this.observerController = observerController;
         this.devxitDelegateCallback = devxitDelegateCallback;
-        this.mContext = context;
-        initLoadingDelegate(mContext);
+        this.mDevxitFragment = devxitFragment;
+        mPopupModule = popUPModule;
+        initLoadingDelegate(mDevxitFragment.getContext());
     }
 
     private void initLoadingDelegate(Context context){
@@ -72,7 +77,7 @@ public class DevxitFragmentDelegateImpl<V extends DevxitView,P extends DevxitPre
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
-        getDevxitMVPDelegate().attachView();
+
 
     }
 
@@ -84,22 +89,23 @@ public class DevxitFragmentDelegateImpl<V extends DevxitView,P extends DevxitPre
 
     @Override
     public void onPause() {
-        getDevxitModuleDelegate().onStop();
+
     }
 
     @Override
     public void onResume() {
-        getDevxitModuleDelegate().onStart();
+
     }
 
     @Override
     public void onStart() {
-
+        getDevxitMVPDelegate().attachView();
+        getDevxitModuleDelegate().onStart();
     }
 
     @Override
     public void onStop() {
-
+        getDevxitModuleDelegate().onStop();
     }
 
     @Override
@@ -125,5 +131,20 @@ public class DevxitFragmentDelegateImpl<V extends DevxitView,P extends DevxitPre
     @Override
     public void onLoading(boolean loading) {
         devxitLoadingDelegate.loading(loading);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        mPopupModule.onActivityResult(requestCode,resultCode,data,devxitDelegateCallback);
+    }
+
+    @Override
+    public void onError(String title, String error) {
+        mPopupModule.onErrorPopup(title,error,mDevxitFragment);
+    }
+
+    @Override
+    public void onRetryError(String title, String error) {
+        mPopupModule.onRetryErrorPopup(title,error,mDevxitFragment);
     }
 }

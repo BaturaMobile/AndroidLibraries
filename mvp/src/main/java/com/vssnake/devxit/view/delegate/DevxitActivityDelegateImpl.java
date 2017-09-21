@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.vssnake.devxit.executor.PostExecutionThread;
 import com.vssnake.devxit.modules.DevxitModuleDelegate;
 import com.vssnake.devxit.observer.ObserverController;
+import com.vssnake.devxit.modules.PopUPModule;
 import com.vssnake.devxit.view.DevxitPresenter;
 import com.vssnake.devxit.view.DevxitView;
 
@@ -21,21 +22,24 @@ public class DevxitActivityDelegateImpl<V extends DevxitView,P extends DevxitPre
     protected DevxitMVPDelegate<V,P> devxitMVPDelegate;
     protected DevxitLoadingDelegate devxitLoadingDelegate;
     private DevxitModuleDelegate devxitModuleDelegate;
+    private PopUPModule mPopUpModule;
 
     ObserverController observerController;
     PostExecutionThread postExecutionThread;
 
+
     public DevxitActivityDelegateImpl(
             DevxitDelegateCallback<V, P> callback,
             ObserverController observerController,
-            PostExecutionThread postExecutionThread) {
+            PostExecutionThread postExecutionThread,
+            PopUPModule popUPModule) {
         if (devxitMVPDelegateCallback != null) {
-
             throw new NullPointerException("DevxitDelegateCallback is null");
         }
         this.postExecutionThread = postExecutionThread;
         this.devxitMVPDelegateCallback = callback;
         this.observerController = observerController;
+        this.mPopUpModule = popUPModule;
 
         getDevxitModuleDelegate();
 
@@ -74,23 +78,24 @@ public class DevxitActivityDelegateImpl<V extends DevxitView,P extends DevxitPre
 
     @Override
     public void onPause() {
-        getDevxitModuleDelegate().onStop();
+
     }
 
     @Override
     public void onResume() {
+
+
+    }
+
+    @Override
+    public void onStart() {
         getDevxitMVPDelegate().attachView();
         getDevxitModuleDelegate().onStart();
     }
 
     @Override
-    public void onStart() {
-
-    }
-
-    @Override
     public void onStop() {
-
+        getDevxitModuleDelegate().onStop();
     }
 
     @Override
@@ -115,10 +120,23 @@ public class DevxitActivityDelegateImpl<V extends DevxitView,P extends DevxitPre
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (mPopUpModule != null)
+            mPopUpModule.onActivityResult(requestCode,resultCode,data,devxitMVPDelegateCallback);
     }
 
     @Override
     public void onLoading(boolean loading) {
         devxitLoadingDelegate.loading(loading);
     }
+
+    @Override
+    public void onError(String title, String error) {
+        mPopUpModule.onErrorPopup(title,error,devxitMVPDelegateCallback.getDevxitActivity());
+    }
+
+    @Override
+    public void onRetryError(String title, String error) {
+        mPopUpModule.onRetryErrorPopup(title,error,devxitMVPDelegateCallback.getDevxitActivity());
+    }
+
 }
