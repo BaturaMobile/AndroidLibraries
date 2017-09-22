@@ -55,6 +55,7 @@ public abstract class DevxitFragment<V extends DevxitView, P extends DevxitPrese
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode,resultCode,data);
         getFragmentDelegate().onActivityResult(requestCode,resultCode,data);
     }
 

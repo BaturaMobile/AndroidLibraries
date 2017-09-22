@@ -71,49 +71,46 @@ public class DevxitAsyncRepository<K,V extends UniqueObject<K>>
        getByKey(key, ReadPolicy.READ_ALL,valueAsync);
     }
 
-    public void getByKey(final K key, ReadPolicy policy,final DevxitGetValueAsync<V> valueAsync){
+    public void getByKey(final K key, final ReadPolicy policy, final DevxitGetValueAsync<V> valueAsync){
         validateKey(key);
 
-        final V valueToRead;
+        cacheHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                V valueToRead = null;
+                if (policy.useCache()){
 
-        if (policy.useCache()){
-                cacheHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        V valueToRead = null;
-                        try {
-                            valueToRead = getValueFromCache(key,valueAsync);
-                        } catch (Throwable throwable) {
-                            valueAsync.onFail(throwable);
-                        }
-                        if (valueToRead != null){
-                            valueAsync.onResult(valueToRead);
-                        }
+
+                    try {
+                        valueToRead = getValueFromCache(key,valueAsync);
+                    } catch (Throwable throwable) {
+                        valueAsync.onFail(throwable);
                     }
-                });
-        }
+                    if (valueToRead != null){
+                        valueAsync.onResult(valueToRead);
+                    }
 
-        if (policy.useReadable()){
-            try {
-                valueToRead = getValueFromReadDataSource(key);
-                valueAsync.onResult(valueToRead);
-                if (valueToRead != null){
-                    cacheHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
+                }
+
+                if (policy.useReadable()){
+                    try {
+                        valueToRead = getValueFromReadDataSource(key);
+                        valueAsync.onResult(valueToRead);
+                        if (valueToRead != null){
                             try {
                                 populateCache(valueToRead);
                             } catch (Throwable throwable) {
                                 valueAsync.onFail(throwable);
                             }
-                        }
-                    });
 
+                        }
+                    } catch (Throwable throwable) {
+                        valueAsync.onFail(throwable);
+                    }
                 }
-            } catch (Throwable throwable) {
-                valueAsync.onFail(throwable);
             }
-        }
+        });
+
     }
 
     @Override
@@ -121,45 +118,40 @@ public class DevxitAsyncRepository<K,V extends UniqueObject<K>>
         getAll(ReadPolicy.READ_ALL,valuesAsync);
     }
 
-    public void getAll(ReadPolicy policy,final DevxitGetValuesAsync<V> valuesAsync){
+    public void getAll(final ReadPolicy policy, final DevxitGetValuesAsync<V> valuesAsync){
         final Collection<V> valuesToRead;
 
-        if (policy.useCache()){
-            cacheHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    Collection<V> valuesToRead = null;
+        cacheHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                Collection<V> valuesToRead = null;
+                if (policy.useCache()){
+
+                            try {
+                                valuesToRead = getValuesFromCache();
+                                if (valuesToRead != null){
+                                    valuesAsync.onResult(valuesToRead);
+                                }
+                            } catch (Throwable throwable) {
+                                valuesAsync.onFail(throwable);
+                            }
+                }
+
+                if (policy.useReadable()){
                     try {
-                        valuesToRead = getValuesFromCache();
+                        valuesToRead = getValuesFromReadDataSource();
+                        valuesAsync.onResult(valuesToRead);
                         if (valuesToRead != null){
-                            valuesAsync.onResult(valuesToRead);
+                            populateCache(valuesToRead);
+
                         }
                     } catch (Throwable throwable) {
                         valuesAsync.onFail(throwable);
                     }
                 }
-            });
-
-
-        }
-
-        if (policy.useReadable()){
-            try {
-                valuesToRead = getValuesFromReadDataSource();
-                valuesAsync.onResult(valuesToRead);
-                if (valuesToRead != null){
-                    cacheHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            populateCache(valuesToRead);
-                        }
-                    });
-
-                }
-            } catch (Throwable throwable) {
-                valuesAsync.onFail(throwable);
             }
-        }
+        });
+
 
 
     }

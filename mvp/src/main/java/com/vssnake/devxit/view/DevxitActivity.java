@@ -152,6 +152,7 @@ public abstract  class DevxitActivity<V extends DevxitView, P extends DevxitPres
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode,resultCode,data);
         getActivityDelegate().onActivityResult(requestCode,resultCode,data);
 
     }
