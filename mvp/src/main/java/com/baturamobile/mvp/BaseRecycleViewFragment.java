@@ -38,9 +38,9 @@ public abstract class BaseRecycleViewFragment<T extends BaseAdapter,P extends Ba
                              Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_rv,container,false);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.frv_rv);
-        emptyImage = (AppCompatImageView) view.findViewById(R.id.frv_empty_image);
-        emptyText = (BaturaTextView) view.findViewById(R.id.frv_empty_text);
+        recyclerView = view.findViewById(R.id.frv_rv);
+        emptyImage = view.findViewById(R.id.frv_empty_image);
+        emptyText = view.findViewById(R.id.frv_empty_text);
 
         return view;
 
