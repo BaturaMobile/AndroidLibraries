@@ -36,7 +36,7 @@ class CreditCardDetector private constructor() {
         creditCards.put(ENUMCARDS.UNIONPAY, Regex("^(62|88)\\d+\$"))
         creditCards.put(ENUMCARDS.VISA, Regex("^4[A-Za-z0-9]{10}(?:[0-9]{3})?\$"))
         creditCards.put(ENUMCARDS.MASTERCARD, Regex("^5[1-5][A-Za-z0-9]{12}\$"))
-        creditCards.put(ENUMCARDS.AMEX, Regex("^3[47][A-Za-z0-9]{13}\$"))
+        creditCards.put(ENUMCARDS.AMEX, Regex("^3[74][A-Za-z0-9]{12}\$"))
     }
 
     fun detectTypeCard( numberCard : String) : ENUMCARDS {
