@@ -3,6 +3,7 @@ package com.baturamobile.mvp;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
@@ -67,6 +68,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     }
 
     @Override
+    @CallSuper
     public void onError(String error,Throwable throwable){
         if (throwable != null){
             Utils.throwError(throwable);

@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
 import android.support.v7.app.AppCompatActivity;
@@ -82,6 +83,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     }
 
     @Override
+    @CallSuper
     public void onError(String error,Throwable throwable) {
         if (throwable != null){
             Utils.throwError(throwable);
@@ -98,10 +100,14 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     }
 
     @Override
-    public abstract Intent onRequestPopUpGpsDisabled();
+    public  Intent onRequestPopUpGpsDisabled(){
+        throw new UnsupportedOperationException();
+    }
 
     @Override
-    public abstract Intent onRequestPopUpPermissionInsufficient();
+    public Intent onRequestPopUpPermissionInsufficient(){
+        throw new UnsupportedOperationException();
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode,

@@ -22,4 +22,17 @@
         <attr name="titleTextSize" format="dimension"/>
     </declare-styleable>
 
+    <!--BaturaCircularProgressBar-->
+    <declare-styleable name="CircularProgressBar">
+        <attr name="cpb_hasShadow" format="boolean"/>
+        <attr name="cpb_progressColor" format="string"/>
+        <attr name="cpb_backgroundColor" format="string"/>
+        <attr name="cpb_title" format="string"/>
+        <attr name="cpb_titleColor" format="string"/>
+        <attr name="cpb_subtitle" format="string"/>
+        <attr name="cpb_subtitleColor" format="string"/>
+        <attr name="cpb_strokeWidth" format="integer"/>
+    </declare-styleable>
+    <!--END BaturaCircularProgressBar-->
+
 </resources>
