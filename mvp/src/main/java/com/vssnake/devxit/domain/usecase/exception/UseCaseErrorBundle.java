@@ -42,7 +42,8 @@ public class UseCaseErrorBundle implements ErrorBundle {
 
     @Override
     public String getErrorMessage() {
-        String message = "Error run UseCase";
+
+        String message = "";
         if (this.exception != null){
             message += this.exception.getMessage();
         }
