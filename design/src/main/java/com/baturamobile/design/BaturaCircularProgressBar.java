@@ -141,7 +141,7 @@ public class BaturaCircularProgressBar extends ProgressBar{
         mTitlePaint.setStyle(Style.FILL);
         mTitlePaint.setAntiAlias(true);
         mTitlePaint.setTypeface(Typeface.create("Roboto-Thin", Typeface.NORMAL));
-        mTitlePaint.setShadowLayer(0.1f, 0, 1, Color.GRAY);
+        //      mTitlePaint.setShadowLayer(0.1f, 0, 1, Color.GRAY);
 
         mSubtitlePaint.setTextSize(20);
         mSubtitlePaint.setStyle(Style.FILL);
@@ -207,7 +207,7 @@ public class BaturaCircularProgressBar extends ProgressBar{
 
         @SuppressLint("ObjectAnimatorBinding")
         final ObjectAnimator progressBarAnimator = ObjectAnimator.ofFloat(this, "animateProgress", start, end);
-        progressBarAnimator.setDuration(1500);
+        progressBarAnimator.setDuration(500);
         //		progressBarAnimator.setInterpolator(new AnticipateOvershootInterpolator(2f, a1.5f));
         progressBarAnimator.setInterpolator(new LinearInterpolator());
 
@@ -266,6 +266,16 @@ public class BaturaCircularProgressBar extends ProgressBar{
 
     public synchronized void setTitleColor(int color){
         mTitlePaint.setColor(color);
+        invalidate();
+    }
+
+    public synchronized void setProgressColor(int color){
+        mProgressColorPaint.setColor(color);
+        invalidate();
+    }
+
+    public synchronized void setBackgroundColor(int color){
+        mBackgroundColorPaint.setColor(color);
         invalidate();
     }
 
