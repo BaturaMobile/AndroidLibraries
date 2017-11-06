@@ -1,6 +1,7 @@
 package com.baturamobile.mvp;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -249,7 +250,15 @@ public class LocationModule implements GoogleApiClient.OnConnectionFailedListene
 
     @Override
     public void onLocationChanged(Location location) {
-        locationModuleCallback.onLocationChanged(location);
+        if (locationModuleCallback != null){
+            locationModuleCallback.onLocationChanged(location);
+        }
+
+    }
+
+    @SuppressLint("MissingPermission")
+    public Location getLastLocation(){
+        return LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
     }
     //endregion
 }
