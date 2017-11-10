@@ -10,6 +10,7 @@ import com.baturamobile.design.BaturaTextView;
 import com.baturamobile.design.adapter.BaseAdapter;
 import com.baturamobile.design.adapter.NoImageModel;
 import com.baturamobile.mvp.R;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 
@@ -38,8 +39,8 @@ public class ListNoImageActivity<M extends NoImageModel> extends AppCompatActivi
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_select_list);
 
-        toolbar = (Toolbar) findViewById(R.id.tt_toolbar);
-        title = (BaturaTextView) findViewById(R.id.tt_title1);
+        toolbar = findViewById(R.id.tt_toolbar);
+        title = findViewById(R.id.tt_title1);
 
         modelList = (ArrayList<M>) getIntent().getSerializableExtra(KEY_MODEL_LIST);
         modelSelected = (M) getIntent().getSerializableExtra(KEY_MODEL_SELECTED);
@@ -48,6 +49,11 @@ public class ListNoImageActivity<M extends NoImageModel> extends AppCompatActivi
         setupViews();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FirebaseAnalytics.getInstance(this).setCurrentScreen(this,titleText,"ListNoImageActivity");
+    }
 
     public void setupViews(){
 
