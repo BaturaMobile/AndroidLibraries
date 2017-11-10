@@ -36,6 +36,8 @@ dependencies {
     implementation supportDependencies.recyclerView
     implementation playServices.location
 
+    implementation playServices.core
+
 
     annotationProcessor various.daggerCompiler
     implementation various.dagger
