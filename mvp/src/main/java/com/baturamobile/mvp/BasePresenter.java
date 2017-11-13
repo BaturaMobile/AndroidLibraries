@@ -18,7 +18,10 @@ public abstract class  BasePresenter<T extends BaseInteface> {
 
     protected void onStop(){}
 
-    protected void onDestroy(){}
+    protected void onDestroy(){
+        viewInterface = null;
+
+    }
 
     protected void onResume(){}
 
