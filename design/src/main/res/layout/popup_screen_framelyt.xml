@@ -13,10 +13,10 @@
         android:id="@+id/popup_card"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="75dp"
         android:layout_marginEnd="40dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="75dp"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,6 +34,9 @@
                 android:id="@+id/popup_main_image"
                 android:layout_width="match_parent"
                 android:layout_height="125dp"
+                android:paddingHorizontal="25dp"
+                android:paddingTop="35dp"
+                android:paddingBottom="15dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
@@ -50,7 +53,7 @@
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:paddingBottom="8dp"
-                android:paddingLeft="25dp"
+                android:paddingLeft="8dp"
                 android:paddingRight="25dp"
                 android:paddingTop="8dp"
                 android:text="Title"
@@ -76,8 +79,9 @@
                 android:layout_height="wrap_content"
                 android:elevation="2dp"
                 android:orientation="horizontal"
-                android:paddingBottom="10dp"
-                android:paddingHorizontal="15dp"
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="35dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -90,8 +94,8 @@
                     android:layout_weight="1"
                     android:gravity="right|center"
                     android:minWidth="45dp"
-                    android:paddingLeft="25dp"
-                    android:text="GERO"
+                    android:paddingRight="15dp"
+                    tools:text="GERO"
                     android:textAlignment="textEnd"
                     android:textAllCaps="true"
                     android:visibility="visible" />
@@ -102,10 +106,10 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="DENAK IKUSI"
+                    tools:text="DENAK IKUSI"
                     android:textAlignment="textEnd"
                     android:textAllCaps="true"
-                    android:textIsSelectable="true" />
+                    android:visibility="visible" />
             </LinearLayout>
 
         </android.support.constraint.ConstraintLayout>

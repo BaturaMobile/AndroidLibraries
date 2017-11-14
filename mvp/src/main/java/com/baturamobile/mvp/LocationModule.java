@@ -158,7 +158,9 @@ public class LocationModule implements GoogleApiClient.OnConnectionFailedListene
                         onConnected(null);
                         break;
                     case Activity.RESULT_CANCELED:
-
+                        if (locationModuleCallback != null){
+                            locationModuleCallback.onLocationSettingFailed();
+                        }
                         break;
                     default:
                         break;
