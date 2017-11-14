@@ -15,10 +15,24 @@ class IDCardValidatorUnitTest{
     fun testValidIDCardSpain(){
         assertTrue(IDCardValidator.instance.validateIDCARD("ES","72318689L"))
     }
+
+    @Test
+    fun testValidNIECardSpain(){
+        assertTrue(IDCardValidator.instance.validateIDCARD("ES","X72318689L"))
+    }
+
+
     @Test
     fun testInvalidIDCardSpain(){
         assertFalse(IDCardValidator.instance.validateIDCARD("ES","45821256L"))
     }
+
+
+    @Test
+    fun testInvalidNIECardSpain(){
+        assertFalse(IDCardValidator.instance.validateIDCARD("ES","A45821256L"))
+    }
+
 
     @Test
     fun testOtherCard(){
