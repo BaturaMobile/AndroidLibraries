@@ -272,6 +272,7 @@ public class LocationModule implements GoogleApiClient.OnConnectionFailedListene
                 LocationServices.getSettingsClient(baseActivity).checkLocationSettings(locationSettingsRequest);
 
         task.addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {
+            @SuppressLint("MissingPermission")
             @Override
             public void onComplete(Task<LocationSettingsResponse> task) {
                 try {
@@ -282,7 +283,7 @@ public class LocationModule implements GoogleApiClient.OnConnectionFailedListene
                     try{
                         LocationServices.FusedLocationApi.requestLocationUpdates(LocationModule.this.mGoogleApiClient,
                                 LocationModule.this.mLocationRequest,LocationModule.this);
-                    }catch (SecurityException e){
+                    }catch (Throwable e){
                         Utils.throwError(e);
                     }
 
