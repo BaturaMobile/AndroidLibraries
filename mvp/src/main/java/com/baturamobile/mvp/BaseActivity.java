@@ -117,9 +117,9 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
        }
     }
 
-    public void initLocationModule(LocationModule.LocationModuleCallback locationModuleCallback){
+    public void initLocationModule(LocationModule.LocationModuleCallback locationModuleCallback,String permission,int priority){
         if (getLocationModule() == null){
-            locationModule = new LocationModule(locationModuleCallback,this,this);
+            locationModule = new LocationModule(locationModuleCallback,this,this,permission,priority);
         }
     }
     Context context;
