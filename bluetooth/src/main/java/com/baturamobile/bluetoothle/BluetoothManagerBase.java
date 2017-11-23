@@ -12,11 +12,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
-import android.util.Log;
 
 import com.baturamobile.bluetoothle.wrapers.BluetoothCharacteristicWrapper;
 import com.baturamobile.bluetoothle.wrapers.BluetoothDeviceWrapp;
 import com.baturamobile.bluetoothle.wrapers.BluetoothServiceWrapper;
+import com.baturamobile.utils.LogStatic;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -180,16 +180,16 @@ public abstract class BluetoothManagerBase implements BluetoothLEDiscovery.ScanR
             setInitialized(false);
 
         }
-        Log.d(TAG,"OnConnection Status " + connected);
+        LogStatic.logInterface.d(TAG,"OnConnection Status " + connected);
     }
 
     public void onServicesDiscovered(List<BluetoothGattService> services){
-        Log.d(TAG,"onServicesDiscovered Services " + services.size());
+        LogStatic.logInterface.d(TAG,"onServicesDiscovered Services " + services.size());
         bluetoothGattWrapperFactory.addServices(services);
     }
 
     public void onServicesProcessed(Map<String, Map<String, BluetoothGattCharacteristic>> resultServices){
-        Log.d(TAG,"services Processed ");
+        LogStatic.logInterface.d(TAG,"services Processed ");
     }
     @Override
     public void onCharacteristicsProcessed(Map<String, Map<String, BluetoothGattCharacteristic>> characteristics) {
@@ -256,17 +256,17 @@ public abstract class BluetoothManagerBase implements BluetoothLEDiscovery.ScanR
 
 
     public void onProblemDiscoverServices(){
-        Log.d(TAG,"onProblemProcessServices ");
+        LogStatic.logInterface.d(TAG,"onProblemProcessServices ");
     }
 
     public void onDiscoveringServices(){
-        Log.d(TAG,"onDiscovering Services ");
+        LogStatic.logInterface.d(TAG,"onDiscovering Services ");
     }
 
 
 
     public void onProblemProcessServices(){
-        Log.d(TAG,"onProblemProcessServices ");
+        LogStatic.logInterface.d(TAG,"onProblemProcessServices ");
     }
 
     @Override
