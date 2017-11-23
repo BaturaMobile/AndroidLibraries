@@ -17,11 +17,11 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.ProgressBar;
+
+import com.baturamobile.utils.LogStatic;
 
 /*
  * Copyright 2013 Leon Cheng
@@ -242,7 +242,7 @@ public class BaturaCircularProgressBar extends ProgressBar{
             public void onAnimationUpdate(final ValueAnimator animation) {
                 int progress = ((Float) animation.getAnimatedValue()).intValue();
                 if(progress!= BaturaCircularProgressBar.this.getProgress()){
-                    Log.d(TAG, progress + "");
+                    LogStatic.logInterface.d(TAG, progress + "");
                     BaturaCircularProgressBar.this.setProgress(progress);
                     if(listener!=null)
                         listener.onAnimationProgress(progress);
