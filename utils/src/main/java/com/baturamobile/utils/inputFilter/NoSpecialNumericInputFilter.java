@@ -18,7 +18,6 @@ public class NoSpecialNumericInputFilter implements InputFilter {
         if (source.toString().isEmpty()){
             return "";
         }
-        //{
             String sourceString = source.toString();
             StringBuilder resultBuilder = new StringBuilder();
 
@@ -30,10 +29,7 @@ public class NoSpecialNumericInputFilter implements InputFilter {
                     resultBuilder.append(sourceString.charAt(i));
                 }
             }
-        
-            String retChar = new String(ch);*/
+
             return resultBuilder.toString();
-        //}
-       // return "";
     }
 }
