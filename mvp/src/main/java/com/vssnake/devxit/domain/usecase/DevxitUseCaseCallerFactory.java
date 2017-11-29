@@ -3,6 +3,7 @@ package com.vssnake.devxit.domain.usecase;
 
 import android.util.Log;
 
+import com.baturamobile.utils.LogStatic;
 import com.vssnake.devxit.exceptions.ErrorBundle;
 import com.vssnake.devxit.executor.PostExecutionThread;
 import com.vssnake.devxit.executor.ThreadExecutor;
@@ -115,7 +116,7 @@ public class DevxitUseCaseCallerFactory {
             @Override
             public void onSuccessCallback(final T result) {
 
-                Log.d(TAG,"onSuccessCallback | " + useCaseCallbackWeakReference.get());
+                LogStatic.logInterface.d(TAG,"onSuccessCallback | " + useCaseCallbackWeakReference.get());
                 if (useCaseCallbackWeakReference != null &&
                         useCaseCallbackWeakReference.get() != null){
 
@@ -133,7 +134,7 @@ public class DevxitUseCaseCallerFactory {
 
         public void setCallback(DevxitUseCaseCallback<T> devxitUseCaseCallback){
 
-            Log.d(TAG,"onsetCallback | " + devxitUseCaseCallback);
+            LogStatic.logInterface.d(TAG,"onsetCallback | " + devxitUseCaseCallback);
             this.useCaseCallbackWeakReference = new WeakReference<>(devxitUseCaseCallback);
         }
 

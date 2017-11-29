@@ -47,6 +47,7 @@ dependencies {
     implementation various.maps_utils
     implementation playServices.maps
     implementation playServices.core
+    implementation playServices.location
     implementation supportDependencies.recyclerView
     implementation various.gson
     implementation various.jodaTime

@@ -28,6 +28,7 @@
         <attr name="cpb_progressColor" format="string"/>
         <attr name="cpb_backgroundColor" format="string"/>
         <attr name="cpb_title" format="string"/>
+        <attr name="cpb_title_text_size" format="dimension"/>
         <attr name="cpb_titleColor" format="string"/>
         <attr name="cpb_subtitle" format="string"/>
         <attr name="cpb_subtitleColor" format="string"/>

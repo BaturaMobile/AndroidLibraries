@@ -57,24 +57,34 @@ public class LocationModule implements GoogleApiClient.OnConnectionFailedListene
     private static final String DENY_POPUP_LOCATION = "popupLocationKEy";
     private static final String DENY_POPUP_REQUEST_LOCATION_PERMISSION = "popupLocationPermissionKEy";
 
+    String mPermission;
+
+    int mPriorityLocation = 0;
+
 
 
     public LocationModule(LocationModuleCallback locationModuleCallback,
                           LocationPopUPCallback locationPopUPCallback,
-                          BaseActivity baseActivity){
+                          BaseActivity baseActivity,
+                          String permission,
+                        int priorityLocation){
         this.locationPopUPCallback = locationPopUPCallback;
         this.locationModuleCallback = locationModuleCallback;
         this.baseActivity = baseActivity;
+        this.mPermission = permission;
+        this.mPriorityLocation = priorityLocation;
+
+
 
     }
 
     public void  checkRequirements(){
 
-        if ((!checkGspEnabled(baseActivity) || !checkPositionPermission()) &&
+        if ((!checkPermissionEnabled(baseActivity) || !checkPositionPermission()) &&
                 isDenyLocationPopUP() && isDenyRequestPermissionLocationPopUp()) {
             locationModuleCallback.onLocationPermissionFailed();
         } else {
-            if (!checkGspEnabled(baseActivity) && !isDenyLocationPopUP()) {
+            if (!checkPermissionEnabled(baseActivity) && !isDenyLocationPopUP()) {
                 showPopupRequestLocation(locationPopUPCallback.onRequestPopUpGpsDisabled());
             } else if (!checkPositionPermission() && !isDenyRequestPermissionLocationPopUp()) {
                 showRequestLocationPermission(locationPopUPCallback.onRequestPopUpPermissionInsufficient());
@@ -90,11 +100,11 @@ public class LocationModule implements GoogleApiClient.OnConnectionFailedListene
     }
 
     public boolean isRequirementsAllowed(){
-        if ((!checkGspEnabled(baseActivity) || !checkPositionPermission()) &&
+        if ((!checkPermissionEnabled(baseActivity) || !checkPositionPermission()) &&
                 isDenyLocationPopUP() && isDenyRequestPermissionLocationPopUp()) {
            return false;
         } else {
-            if (!checkGspEnabled(baseActivity) && !isDenyLocationPopUP()) {
+            if (!checkPermissionEnabled(baseActivity) && !isDenyLocationPopUP()) {
                 return false;
             } else if (!checkPositionPermission() && !isDenyRequestPermissionLocationPopUp()) {
                 return false;
@@ -195,20 +205,25 @@ public class LocationModule implements GoogleApiClient.OnConnectionFailedListene
 
     private void requestLocationPermission(BaseActivity baseActivity){
         ActivityCompat.requestPermissions(baseActivity,
-                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_ENABLE_PERMISSION_LOCATION);
+                new String[]{mPermission},REQUEST_ENABLE_PERMISSION_LOCATION);
     }
 
     private boolean checkPositionPermission(){
-        int permission = ContextCompat.checkSelfPermission(baseActivity, Manifest.permission.ACCESS_FINE_LOCATION);
+        int permission = ContextCompat.checkSelfPermission(baseActivity, mPermission);
 
         return permission == android.content.pm.PackageManager.PERMISSION_GRANTED;
     }
 
-    private boolean checkGspEnabled(Context context){
+    private boolean checkPermissionEnabled(Context context){
         LocationManager manager = (LocationManager)context
                 .getSystemService(Context.LOCATION_SERVICE);
 
-        return manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        if (mPermission.equals(Manifest.permission.ACCESS_COARSE_LOCATION)){
+            return manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        }else{
+            return manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        }
+
     }
 
 
@@ -232,7 +247,7 @@ public class LocationModule implements GoogleApiClient.OnConnectionFailedListene
 
     int mIntervalLocation = 0;
     int mIntervalFastestLocation = 0;
-    int mPriorityLocation = 0;
+
 
     public void initLocationUpdate(int interval,int fastestInterval,int priority){
         if (mGoogleApiClient == null){
@@ -260,6 +275,7 @@ public class LocationModule implements GoogleApiClient.OnConnectionFailedListene
             mLocationRequest = new LocationRequest();
             mLocationRequest.setInterval(mIntervalLocation)
                     .setFastestInterval(mIntervalFastestLocation)
+
                     .setPriority(mPriorityLocation);
         }
 
