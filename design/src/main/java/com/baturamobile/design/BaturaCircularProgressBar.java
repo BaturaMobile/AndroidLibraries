@@ -21,7 +21,7 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.ProgressBar;
 
-import com.baturamobile.utils.LogStatic;
+import com.baturamobile.utils.log.LogStatic;
 
 /*
  * Copyright 2013 Leon Cheng

@@ -1,4 +1,4 @@
-package com.baturamobile.utils;
+package com.baturamobile.utils.log;
 
 
 /**

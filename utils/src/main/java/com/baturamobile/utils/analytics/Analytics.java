@@ -3,7 +3,7 @@ package com.baturamobile.utils.analytics;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.baturamobile.utils.LogStatic;
+import com.baturamobile.utils.log.LogStatic;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 /**
