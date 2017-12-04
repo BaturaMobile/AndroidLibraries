@@ -2,7 +2,8 @@ package com.baturamobile.bluetoothle;
 
 import android.util.Log;
 
-import com.baturamobile.utils.LogStatic;
+import com.baturamobile.utils.log.LogStatic;
+
 
 /**
  * Created by unai on 19/08/2016.

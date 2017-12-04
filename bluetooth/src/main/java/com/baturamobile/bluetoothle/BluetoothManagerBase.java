@@ -16,7 +16,7 @@ import android.os.Build;
 import com.baturamobile.bluetoothle.wrapers.BluetoothCharacteristicWrapper;
 import com.baturamobile.bluetoothle.wrapers.BluetoothDeviceWrapp;
 import com.baturamobile.bluetoothle.wrapers.BluetoothServiceWrapper;
-import com.baturamobile.utils.LogStatic;
+import com.baturamobile.utils.log.LogStatic;
 
 import java.util.HashMap;
 import java.util.Iterator;
