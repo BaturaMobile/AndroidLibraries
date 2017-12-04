@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Design_library.iml" filepath="$PROJECT_DIR$/Design_library.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\vssnake\Documents\Source Code\ibil\android\designlibrary-android\app\app.iml" filepath="C:\Users\vssnake\Documents\Source Code\ibil\android\designlibrary-android\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/bluetooth/bluetooth.iml" filepath="$PROJECT_DIR$/bluetooth/bluetooth.iml" />
       <module fileurl="file://$PROJECT_DIR$/design/design.iml" filepath="$PROJECT_DIR$/design/design.iml" />
-      <module fileurl="file://$PROJECT_DIR$/designlibrary-android.iml" filepath="$PROJECT_DIR$/designlibrary-android.iml" />
-      <module fileurl="file://C:\Users\vssnake\Documents\Source Code\ibil\android\designlibrary-android\designlibrary-android.iml" filepath="C:\Users\vssnake\Documents\Source Code\ibil\android\designlibrary-android\designlibrary-android.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvp/mvp.iml" filepath="$PROJECT_DIR$/mvp/mvp.iml" />
       <module fileurl="file://$PROJECT_DIR$/utils/utils.iml" filepath="$PROJECT_DIR$/utils/utils.iml" />
     </modules>

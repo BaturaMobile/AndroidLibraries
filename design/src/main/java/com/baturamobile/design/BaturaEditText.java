@@ -69,12 +69,12 @@ public class BaturaEditText extends TextInputEditText{
         return Patterns.PHONE.matcher(getText()).matches();
     }
 
+
     public void setEditable(boolean editable){
             this.setClickable(editable);
             this.setCursorVisible(editable);
             this.setFocusable(editable);
             this.setFocusableInTouchMode(editable);
-
     }
 
 

@@ -54,10 +54,9 @@ public class MainActivity extends AppCompatActivity {
         notEditableEditText = findViewById(R.id.disbled_edittext);
 
 
-        editTextEmailLayout.setEnabled(true);
-        editTextInputLayout.setEnabled(true);
 
-
+        //editTextEmailLayout.setError("");
+        //editTextInputLayout.setEnabled(true);
 
 
         button.setOnClickListener(new View.OnClickListener() {
