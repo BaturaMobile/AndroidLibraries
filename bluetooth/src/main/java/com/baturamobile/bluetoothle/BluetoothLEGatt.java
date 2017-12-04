@@ -187,6 +187,7 @@ public class BluetoothLEGatt {
 
             return;
         }
+        LogStatic.logInterface.d(TAG,"OnConnectionStateChange | OldStatus " + status + " | NewStatus " + newState);
         switch (newState){
             case BluetoothProfile.STATE_CONNECTED:
                 mBluetoothGattStatus.onConnectionStatus(true);
