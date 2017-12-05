@@ -10,7 +10,7 @@ import android.bluetooth.BluetoothProfile;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
-import com.baturamobile.utils.LogStatic;
+import com.baturamobile.utils.log.LogStatic;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -187,6 +187,7 @@ public class BluetoothLEGatt {
 
             return;
         }
+        LogStatic.logInterface.d(TAG,"OnConnectionStateChange | OldStatus " + status + " | NewStatus " + newState);
         switch (newState){
             case BluetoothProfile.STATE_CONNECTED:
                 mBluetoothGattStatus.onConnectionStatus(true);

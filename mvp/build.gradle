@@ -1,13 +1,16 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.BaturaMobile'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     buildToolsVersion '26.0.2'
 
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
 
@@ -31,34 +34,33 @@ dependencies {
     implementation project(':design')
     implementation project(':utils')
 
-    implementation various.constraints
-    implementation supportDependencies.appCompat
-    implementation supportDependencies.recyclerView
-    implementation playServices.location
-
-    implementation playServices.core
-
-
-    annotationProcessor various.daggerCompiler
-    implementation various.dagger
+    implementation "com.android.support.constraint:constraint-layout:$constraints"
+    implementation "com.android.support:appcompat-v7:$supportLibrary"
+    implementation "com.android.support:recyclerview-v7:$supportLibrary"
+    implementation "com.google.android.gms:play-services-location:$playServices"
+    implementation "com.google.firebase:firebase-core:${playServices}"
 
 
-    testImplementation testing.junit
-    testImplementation(testing.powerMockJunit) {
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger"
+    implementation  "com.google.dagger:dagger-android:$dagger"
+
+
+    testImplementation "junit:junit:$junit"
+    testImplementation("org.powermock:powermock-module-junit4:$powerMockJunit") {
         exclude module: 'hamcrest-core'
         exclude module: 'objenesis'
    }
-    androidTestCompile(testing.espressoCore, {
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$expresso", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testImplementation testing.mockitoCore
-    testImplementation(testing.powerMockMockito2) {
+    testImplementation "org.mockito:mockito-core:${mockitoCore}"
+    testImplementation("org.powermock:powermock-api-mockito2:${powerMockJunit}") {
         exclude module: 'hamcrest-core'
        exclude module: 'objenesis'
     }
-    testImplementation testing.robolectric
-    testImplementation testing.robolectircShadow
-    testImplementation testing.kronosOpengl
+    testImplementation "org.robolectric:robolectric:$robolectic"
+    testImplementation "org.robolectric:shadows-support-v4:$robolectic"
+    testImplementation "org.khronos:opengl-api:${khronosOpengl}"
 
 }
 

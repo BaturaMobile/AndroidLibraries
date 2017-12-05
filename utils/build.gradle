@@ -1,12 +1,16 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.BaturaMobile'
+
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     buildToolsVersion '26.0.2'
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
 
@@ -19,8 +23,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-
 }
 
 configurations.all {
@@ -42,19 +44,19 @@ configurations.all {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation various.retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
 
-    implementation various.maps_utils
-    implementation playServices.maps
-    implementation playServices.core
-    implementation playServices.location
-    implementation supportDependencies.recyclerView
-    implementation various.gson
-    implementation various.jodaTime
+    implementation "com.google.maps.android:android-maps-utils:$maps_utils"
+    implementation  "com.google.android.gms:play-services-maps:$playServices"
+    implementation "com.google.firebase:firebase-core:$playServices"
+    implementation "com.google.android.gms:play-services-location:$playServices"
+    implementation "com.android.support:recyclerview-v7:$supportLibrary"
+    implementation "com.google.code.gson:gson:$gson"
+    implementation "joda-time:joda-time:$jodaTime"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-    testImplementation testing.junit
-    testImplementation testing.mockitoCore
+    testImplementation "junit:junit:$junit"
+    testImplementation "org.mockito:mockito-core:${mockitoCore}"
 
 
 }
