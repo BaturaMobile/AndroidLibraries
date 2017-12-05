@@ -36,7 +36,7 @@ void checkout() {
 void mirroring() {
     stage('Mirroring to gitHub') {
          try {
-            sh 'git clone --mirror git@bitbucket.org:baturamobile/designlibrary-android.git'
+            sh 'git clone --mirror https://vsnake@bitbucket.org/baturamobile/designlibrary-android.git'
             sh 'cd designlibrary-android.git'
             sh 'git push --mirror https://github.com/BaturaMobile/android-libraries.git'
             slackSend color: 'good', channel: "#jenkins", message: "Finished Successfully: iOS Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})", botUser:true
