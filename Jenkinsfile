@@ -39,7 +39,7 @@ void mirroring() {
             sh 'rm -r designlibrary-android.git'
             sh 'git clone --mirror https://vsnake@bitbucket.org/baturamobile/designlibrary-android.git'
             dir("designlibrary-android.git") {
-                    sh 'git push --mirror https://github.com/BaturaMobile/android-libraries.git'
+                      sh 'git push --mirror https://baturamobile@github.com/BaturaMobile/android-libraries.git'
             }
             slackSend color: 'good', channel: "#jenkins", message: "Finished Successfully: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})", botUser:true
          } catch (Exception e) {
