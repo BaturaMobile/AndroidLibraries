@@ -2,7 +2,6 @@ package com.baturamobile.utils.inputFilter;
 
 import android.text.InputFilter;
 import android.text.Spanned;
-import android.text.TextUtils;
 
 /**
  * Created by virtu on 11/29/2017.
@@ -25,7 +24,8 @@ public class NoSpecialNumericInputFilter implements InputFilter {
                 if (Character.isDigit(sourceString.charAt(i))) {
                     continue;
                 }
-                if (Character.isLetterOrDigit(sourceString.charAt(i))) {
+                if (Character.isLetterOrDigit(sourceString.charAt(i))
+                        || Character.isSpaceChar(sourceString.charAt(i))) {
                     resultBuilder.append(sourceString.charAt(i));
                 }
             }
