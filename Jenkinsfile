@@ -35,8 +35,14 @@ void checkout() {
 
 void mirroring() {
     stage('Mirroring to gitHub') {
+         try{
+             sh 'rm -r designlibrary-android.git'
+         } catch (Exception e) {
+            lackSend color: 'danger', channel: "#jenkins", message: "Job Failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})", botUser:true
+            throw error
+         }
          try {
-            sh 'rm -r designlibrary-android.git'
+
             sh 'git clone --mirror https://vsnake@bitbucket.org/baturamobile/designlibrary-android.git'
             dir("designlibrary-android.git") {
                       sh 'git push --mirror https://baturamobile@github.com/BaturaMobile/android-libraries.git'
