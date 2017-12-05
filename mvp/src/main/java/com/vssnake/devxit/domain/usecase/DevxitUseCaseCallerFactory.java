@@ -3,7 +3,7 @@ package com.vssnake.devxit.domain.usecase;
 
 import android.util.Log;
 
-import com.baturamobile.utils.LogStatic;
+import com.baturamobile.utils.log.LogStatic;
 import com.vssnake.devxit.exceptions.ErrorBundle;
 import com.vssnake.devxit.executor.PostExecutionThread;
 import com.vssnake.devxit.executor.ThreadExecutor;

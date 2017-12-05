@@ -1,6 +1,7 @@
 package com.baturamobile.mvp;
 
-import org.jetbrains.annotations.Nullable;
+
+import android.support.annotation.Nullable;
 
 /**
  * Created by unai on 12/08/2016.
