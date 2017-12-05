@@ -43,6 +43,8 @@ void mirroring() {
             slackSend color: 'good', channel: "#jenkins", message: "Finished Successfully: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})", botUser:true
          } catch (Exception e) {
             slackSend color: 'danger', channel: "#jenkins", message: "Job Failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})", botUser:true
+            throw error
+
          }
     }
 }
