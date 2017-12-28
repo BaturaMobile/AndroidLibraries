@@ -10,6 +10,8 @@
         <activity android:name=".popup.PopUpScreen" android:screenOrientation="portrait"
             android:theme="@style/Theme.Transparent"/>
 
+
+
     </application>
 
 </manifest>

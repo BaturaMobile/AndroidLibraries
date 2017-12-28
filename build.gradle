@@ -42,6 +42,7 @@ ext{
     mockitoCore = '2.8.9'
     robolectic = '3.2.2'
     khronosOpengl = "gl1.1-android-2.1_r1"
+    ext.glide_version = "4.4.0"
 }
 
 task clean(type: Delete) {
