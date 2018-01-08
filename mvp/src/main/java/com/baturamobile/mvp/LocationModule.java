@@ -225,7 +225,11 @@ public class LocationModule implements GoogleApiClient.OnConnectionFailedListene
         }
 
     }
+    public static final String RESETSTRINGKEY = "resetStringkey";
 
+    public static void resetLocationRequest() {
+        PreferencesManager.setBoolean(RESETSTRINGKEY,true);
+    }
 
 
     public interface LocationPopUPCallback{
@@ -292,9 +296,11 @@ public class LocationModule implements GoogleApiClient.OnConnectionFailedListene
             @Override
             public void onComplete(Task<LocationSettingsResponse> task) {
                 try {
-                    LocationSettingsResponse response = task.getResult(ApiException.class);
-                    // All location settings are satisfied. The client can initialize location
-                    // requests here.
+                    if (PreferencesManager.getBoolean(RESETSTRINGKEY,true)){
+                        PreferencesManager.setBoolean(RESETSTRINGKEY,false);
+                        LocationSettingsResponse response = task.getResult(ApiException.class);
+
+                    }
 
                     try{
                         LocationServices.FusedLocationApi.requestLocationUpdates(LocationModule.this.mGoogleApiClient,
