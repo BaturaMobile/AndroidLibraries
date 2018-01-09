@@ -14,10 +14,10 @@ public abstract class BaseFragmentV2<T extends BasePresenterV2> extends BaseFrag
 
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onStart();
+        super.onViewCreated(view,savedInstanceState);
         injectDI();
         if (getPresenter() != null){
-            getPresenter().onStart();
+            getPresenter().onCreate();
         }
     }
 

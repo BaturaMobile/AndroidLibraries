@@ -1,5 +1,8 @@
 package com.baturamobile.mvp;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+
 /**
  * Created by vssnake on 09/01/2018.
  */
@@ -7,11 +10,11 @@ package com.baturamobile.mvp;
 public abstract class BaseActivityV2<T extends BasePresenterV2> extends BaseActivity<T> {
 
     @Override
-    public void onStart() {
-        super.onStart();
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         injectDI();
         if (getPresenter() != null){
-            getPresenter().onStart();
+            getPresenter().onCreate();
         }
     }
 
