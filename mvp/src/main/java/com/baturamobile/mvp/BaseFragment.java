@@ -23,6 +23,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+        super.onViewCreated(view,savedInstanceState);
         progress = new ProgressDialog(getContext());
         progress.setTitle(R.string.loading);
         progress.setMessage(getContext().getString(R.string.please_wait));
