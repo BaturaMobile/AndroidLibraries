@@ -19,7 +19,7 @@ class VATValidator private constructor(){
     private val spanishLetterVerefied : HashMap<kotlin.Int,String>
 
     init{
-        countries.put(VATValidator.COUNTRIES.ES, Regex("^[A-Wa-w][0-9]{8}\$"))
+        countries.put(VATValidator.COUNTRIES.ES, Regex("^[A-Wa-w][0-9-A-Wa-w]{8}\$"))
 
         spanishLetterVerefied = hashMapOf(0 to "J", 1 to "A", 2 to "B", 3 to "C",
                 4 to "D", 5 to "E", 6 to "F", 7 to "G", 8 to "H", 9 to "I")
@@ -61,12 +61,18 @@ class VATValidator private constructor(){
 
                 val EDigit = Integer.valueOf(partialSum.toString()[1].toString())
 
-                val letterFinal = 10- EDigit
+                val calculatedNumberControl = 10- EDigit
 
-                return spanishLetterVerefied.containsKey(letterFinal)
-                        && spanishLetterVerefied.get(letterFinal).equals(codeCard.substring(0,1),true)
+                val controlID = codeCard.substring(8,9)
+                return if (controlID.toIntOrNull() != null){
+                    calculatedNumberControl == controlID.toInt()
+                }else{
+                    (spanishLetterVerefied.containsKey(calculatedNumberControl)
+                            && spanishLetterVerefied.get(calculatedNumberControl).equals(controlID,true))
+                }
+
             }catch (e :  Exception){
-                return false;
+                return false
             }
 
 
