@@ -48,7 +48,7 @@ class IDCardValidator private constructor(){
                 val onlyNumber = Integer.valueOf(formattedCodeCard.substring(0,8))
                 val remainder = onlyNumber % 23
                 if (spanishLetterVerefied.containsKey(remainder)
-                        && spanishLetterVerefied[remainder] == (formattedCodeCard[8].toString())){
+                        && spanishLetterVerefied[remainder]?.toUpperCase() == (formattedCodeCard[8].toString()?.toUpperCase())){
                     return true
                 }
             }
