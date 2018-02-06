@@ -35,8 +35,8 @@ public class NoImageAdapter<M extends NoImageModel> extends BaseAdapter<NoImageM
 
         @Override
         public void setupView(View view) {
-            tick_image = (AppCompatImageView)view.findViewById(R.id.nih_tick);
-            baturaTextView = (BaturaTextView) view.findViewById(R.id.nih_text);
+            tick_image = view.findViewById(R.id.nih_tick);
+            baturaTextView = view.findViewById(R.id.nih_text);
 
             view.findViewById(R.id.nih_container).setOnClickListener(new View.OnClickListener() {
                 @Override

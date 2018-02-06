@@ -198,7 +198,7 @@ public final class ScanRecordLega implements Parcelable {
     }
 
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeParcelableArray((Parcelable[]) this.mServiceUuids.toArray(new ParcelUuid[this.mServiceUuids.size()]), i);
+        parcel.writeParcelableArray(this.mServiceUuids.toArray(new ParcelUuid[this.mServiceUuids.size()]), i);
         parcel.writeInt(this.mAdvertiseFlags);
         parcel.writeInt(this.mTxPowerLevel);
         parcel.writeString(this.mDeviceName);

@@ -217,10 +217,7 @@ public class DevxitUseCaseFactory {
             return false;
         }
         Annotation annotation = annotations[annotations.length -1 ][0];
-        if (!annotation.annotationType().getName().equals(UseCaseCallback.class.getName())){
-            return false;
-        }
-        return true;
+        return annotation.annotationType().getName().equals(UseCaseCallback.class.getName());
 
     }
 }

@@ -47,5 +47,6 @@
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/nih_text"
-        app:srcCompat="@drawable/ic_ok" />
+        app:srcCompat="@drawable/ic_ok"
+        android:layout_marginRight="8dp" />
 </android.support.constraint.ConstraintLayout>

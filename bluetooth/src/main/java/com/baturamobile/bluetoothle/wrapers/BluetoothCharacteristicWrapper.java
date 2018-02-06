@@ -67,7 +67,7 @@ public class BluetoothCharacteristicWrapper {
         FORMAT_STRING(0x200);
         private final int value;
 
-        private FormatValueType(int value) {
+        FormatValueType(int value) {
             this.value = value;
         }
 

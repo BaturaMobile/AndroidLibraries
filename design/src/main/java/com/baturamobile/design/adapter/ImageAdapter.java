@@ -32,8 +32,8 @@ public class ImageAdapter<M extends WithImageModel> extends BaseAdapter<WithImag
 
         @Override
         public void setupView(View view) {
-            baturaTextView = (BaturaTextView) view.findViewById(R.id.ih_text);
-            imageView = (AppCompatImageView) view.findViewById(R.id.ih_image);
+            baturaTextView = view.findViewById(R.id.ih_text);
+            imageView = view.findViewById(R.id.ih_image);
             view.findViewById(R.id.nih_container).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

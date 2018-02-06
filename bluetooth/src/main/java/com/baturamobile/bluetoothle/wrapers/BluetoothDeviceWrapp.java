@@ -13,7 +13,7 @@ public class BluetoothDeviceWrapp implements Serializable {
 
     public BluetoothDeviceWrapp(BluetoothDevice bluetoothDevice, ScanRecordLega scanRecordLegacy) {
         this.addres = bluetoothDevice.getAddress();
-        this.UUID = ((ParcelUuid) scanRecordLegacy.getServiceUuids().get(0)).getUuid().toString();
+        this.UUID = scanRecordLegacy.getServiceUuids().get(0).getUuid().toString();
     }
 
     public String getAddress() {

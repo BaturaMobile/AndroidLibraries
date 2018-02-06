@@ -138,7 +138,7 @@ public class SharedPreferencesDataSource<V extends UniqueObject<String>> impleme
 
     private V transformJsonValueToObject(String json) throws Throwable {
         if (json != null){
-            return (V) jsonConverter.fromJSon(json,classFromInstantiate);
+            return jsonConverter.fromJSon(json,classFromInstantiate);
 
         }else{
             throw new NullPointerException("json is null");

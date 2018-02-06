@@ -106,11 +106,7 @@ public class LocationModule implements GoogleApiClient.OnConnectionFailedListene
         } else {
             if (!checkPermissionEnabled(baseActivity) && !isDenyLocationPopUP()) {
                 return false;
-            } else if (!checkPositionPermission() && !isDenyRequestPermissionLocationPopUp()) {
-                return false;
-            } else {
-                return true;
-            }
+            } else return !(!checkPositionPermission() && !isDenyRequestPermissionLocationPopUp());
         }
     }
 

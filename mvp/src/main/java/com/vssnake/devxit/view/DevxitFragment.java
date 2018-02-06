@@ -50,7 +50,7 @@ public abstract class DevxitFragment<V extends DevxitView, P extends DevxitPrese
     }
 
     protected ActivityModule getActivityModule(){
-        return ((DevxitActivity) getDevxitActivity()).getActivityModule();
+        return getDevxitActivity().getActivityModule();
     }
 
     @Override

@@ -60,9 +60,9 @@ public class BaturaCircularProgressBar extends ProgressBar{
     private int mShadowColor = Color.BLACK;
 
     public interface ProgressAnimationListener{
-        public void onAnimationStart();
-        public void onAnimationFinish();
-        public void onAnimationProgress(int progress);
+        void onAnimationStart();
+        void onAnimationFinish();
+        void onAnimationProgress(int progress);
     }
 
     public BaturaCircularProgressBar(Context context) {
@@ -167,7 +167,7 @@ public class BaturaCircularProgressBar extends ProgressBar{
 
         if(!TextUtils.isEmpty(mTitle)){
             int xPos =  (int)(getMeasuredWidth()/2 - mTitlePaint.measureText(mTitle) / 2);
-            int yPos = (int) (getMeasuredHeight()/2);
+            int yPos = getMeasuredHeight()/2;
 
             float titleHeight = Math.abs(mTitlePaint.descent() + mTitlePaint.ascent());
             if(TextUtils.isEmpty(mSubTitle)){

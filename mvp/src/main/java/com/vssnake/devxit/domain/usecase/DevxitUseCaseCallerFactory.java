@@ -61,8 +61,8 @@ public class DevxitUseCaseCallerFactory {
 
     @Inject
     public  DevxitUseCaseCallerFactory(ThreadExecutor threadExecutor,PostExecutionThread postExecutionThread){
-        this.threadExecutor = threadExecutor;
-        this.postExecutionThread = postExecutionThread;
+        DevxitUseCaseCallerFactory.threadExecutor = threadExecutor;
+        DevxitUseCaseCallerFactory.postExecutionThread = postExecutionThread;
     }
 
 
