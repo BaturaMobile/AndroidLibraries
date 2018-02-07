@@ -1,7 +1,7 @@
 ext {
     //Version
-    supportLibrary = '26.0.2'
-    playServices = "11.2.0"
+    supportLibrary = '27.0.2'
+    playServices = "11.8.0"
     constraints = "1.0.2"
     jodaTime = "2.9.9"
     maps_utils = "0.5"
