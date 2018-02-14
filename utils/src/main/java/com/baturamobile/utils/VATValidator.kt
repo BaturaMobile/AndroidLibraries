@@ -17,18 +17,21 @@ class VATValidator private constructor(){
 
     private val countries = HashMap<VATValidator.COUNTRIES,Regex>()
     private val spanishLetterVerefied : HashMap<kotlin.Int,String>
+    private val spanishTypeCompany : ArrayList<String>
 
     init{
         countries.put(VATValidator.COUNTRIES.ES, Regex("^[A-Wa-w][0-9-A-Wa-w]{8}\$"))
 
         spanishLetterVerefied = hashMapOf(0 to "J", 1 to "A", 2 to "B", 3 to "C",
                 4 to "D", 5 to "E", 6 to "F", 7 to "G", 8 to "H", 9 to "I")
+
+        spanishTypeCompany = arrayListOf("A","B","C","E","F","G","H","J","N","P","Q","R","S","U","V","W")
     }
 
     fun validateVAT(isoCountry : String,codeCard: String) : Boolean{
         return try {
             when(COUNTRIES.valueOf(isoCountry)){
-                VATValidator.COUNTRIES.ES -> isSpanishCardValid(codeCard)
+                VATValidator.COUNTRIES.ES -> isSpanishCardValid(codeCard.toUpperCase())
             }
         }catch (e : Exception){
             //If country not listed return true
@@ -42,6 +45,12 @@ class VATValidator private constructor(){
         if(countries[COUNTRIES.ES]!!.matches(codeCard)){
 
             try {
+                val firstDigit = codeCard.substring(0,1)
+
+                if (!spanishTypeCompany.contains(firstDigit)){
+                    return false
+                }
+
                 val centralDigists = codeCard.substring(1,8)
                 val evenSum = Integer.valueOf(centralDigists.substring(1,2)) +
                         Integer.valueOf(centralDigists.substring(3,4)) +
