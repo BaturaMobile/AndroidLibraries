@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 apply plugin: 'com.github.dcendents.android-maven'
 
 group='com.github.BaturaMobile'
@@ -39,6 +40,7 @@ dependencies {
     implementation "com.android.support.constraint:constraint-layout:$constraints"
 
     implementation project(':utils')
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 configurations.all {
@@ -80,4 +82,5 @@ artifacts {
 
 repositories {
     google()
+    mavenCentral()
 }
