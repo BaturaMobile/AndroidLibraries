@@ -36,7 +36,7 @@ abstract class BaseV2RecycleViewFragment : Fragment(), BaseRecycleView<NoImageMo
 
 
 
-        frv_empty_image.setImageDrawable (getEmptyDrawable())
+
         return view
 
     }
@@ -47,7 +47,7 @@ abstract class BaseV2RecycleViewFragment : Fragment(), BaseRecycleView<NoImageMo
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         frv_rv.layoutManager = LinearLayoutManager(context)
-
+        frv_empty_image.setImageDrawable (getEmptyDrawable())
         adapter?.holderClick(this)
         frv_rv.adapter = adapter
 
