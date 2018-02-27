@@ -9,7 +9,7 @@
     </style>
 
 
-    <style name="Theme.Transparent" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Popup.Theme.Transparent" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="android:windowBackground">@android:color/transparent</item>

@@ -1,6 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    ext.kotlin_version = '1.2.21'
     ext.kotlin_version = '1.2.0'
     repositories {
         mavenLocal()
@@ -27,7 +28,7 @@ allprojects {
 }
 ext{
     supportLibrary = "27.0.2"
-    constraints = "1.1.0-beta3"
+    constraints = "1.1.0-beta5"
     picasso = "2.5.2"
     playServices = "11.8.0"
     dagger = "2.9"
