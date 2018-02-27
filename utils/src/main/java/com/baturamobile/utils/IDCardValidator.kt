@@ -31,7 +31,7 @@ class IDCardValidator private constructor(){
     fun validateIDCARD(isoCountry : String,codeCard: String) : Boolean{
         return try {
             when(COUNTRIES.valueOf(isoCountry)){
-                IDCardValidator.COUNTRIES.ES -> isSpanishCardValid(codeCard)
+                IDCardValidator.COUNTRIES.ES -> isSpanishCardValid(codeCard.toUpperCase())
             }
         }catch (e : Exception){
             //If country not listed return true
