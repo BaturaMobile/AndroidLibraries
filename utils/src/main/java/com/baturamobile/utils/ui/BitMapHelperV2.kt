@@ -1,4 +1,4 @@
-package com.baturamobile.utils
+package com.baturamobile.utils.ui
 
 import android.content.res.Resources
 import android.graphics.Bitmap

@@ -1,4 +1,4 @@
-package com.baturamobile.utils;
+package com.baturamobile.utils.network;
 
 import android.support.annotation.NonNull;
 
@@ -16,7 +16,7 @@ import retrofit2.Retrofit;
  * Created by vssnake on 12/06/2017.
  */
 
-public final class StringConverterFactory extends Converter.Factory {
+public final class RetrofitStringConverterFactory extends Converter.Factory {
     @Override
     public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations,
                                                             Retrofit retrofit) {
@@ -36,7 +36,7 @@ public final class StringConverterFactory extends Converter.Factory {
         };
     }
 
-    public static StringConverterFactory create() {
-        return new StringConverterFactory();
+    public static RetrofitStringConverterFactory create() {
+        return new RetrofitStringConverterFactory();
     }
 }

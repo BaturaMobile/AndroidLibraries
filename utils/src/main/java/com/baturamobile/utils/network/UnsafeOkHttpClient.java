@@ -1,4 +1,4 @@
-package com.baturamobile.utils.data;
+package com.baturamobile.utils.network;
 
 import java.security.cert.CertificateException;
 

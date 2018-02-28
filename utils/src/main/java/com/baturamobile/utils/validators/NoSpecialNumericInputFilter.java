@@ -1,4 +1,4 @@
-package com.baturamobile.utils.inputFilter;
+package com.baturamobile.utils.validators;
 
 import android.text.InputFilter;
 import android.text.Spanned;

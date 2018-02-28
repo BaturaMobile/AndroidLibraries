@@ -8,7 +8,7 @@ import android.view.View
  * Created by vssnake on 08/05/2017.
  */
 
-abstract class BaseAdapterV2 : RecyclerView.Adapter<BaseAdapterV2.RealBaseViewHolder>() {
+abstract class BaseAdapterV2 : RecyclerView.Adapter<BaseAdapterV2.BaseAdapterViewHolderV2>() {
 
     private var arrayItems: ArrayList<NoImageModelV2>? = null
 
@@ -21,7 +21,7 @@ abstract class BaseAdapterV2 : RecyclerView.Adapter<BaseAdapterV2.RealBaseViewHo
         arrayItems = ArrayList()
     }
 
-    override fun onBindViewHolder(holder: RealBaseViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BaseAdapterViewHolderV2, position: Int) {
         holder.bindView(arrayItems!![position], position)
     }
 
@@ -41,7 +41,7 @@ abstract class BaseAdapterV2 : RecyclerView.Adapter<BaseAdapterV2.RealBaseViewHo
         return arrayItems!!.size
     }
 
-    abstract inner class RealBaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    abstract inner class BaseAdapterViewHolderV2(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
         var itemModelV2: NoImageModelV2? = null
             private set

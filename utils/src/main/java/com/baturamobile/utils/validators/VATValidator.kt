@@ -1,4 +1,4 @@
-package com.baturamobile.utils
+package com.baturamobile.utils.validators
 
 /**
  * Created by vssnake on 27/10/2017.
@@ -15,11 +15,11 @@ class VATValidator private constructor(){
         ES()
     }
 
-    private val countries = HashMap<VATValidator.COUNTRIES,Regex>()
+    private val countries = HashMap<COUNTRIES,Regex>()
     private val spanishLetterVerefied : HashMap<kotlin.Int,String>
 
     init{
-        countries.put(VATValidator.COUNTRIES.ES, Regex("^[A-Wa-w][0-9]{8}\$"))
+        countries.put(COUNTRIES.ES, Regex("^[A-Wa-w][0-9]{8}\$"))
 
         spanishLetterVerefied = hashMapOf(0 to "J", 1 to "A", 2 to "B", 3 to "C",
                 4 to "D", 5 to "E", 6 to "F", 7 to "G", 8 to "H", 9 to "I")
@@ -28,7 +28,7 @@ class VATValidator private constructor(){
     fun validateVAT(isoCountry : String,codeCard: String) : Boolean{
         return try {
             when(COUNTRIES.valueOf(isoCountry)){
-                VATValidator.COUNTRIES.ES -> isSpanishCardValid(codeCard)
+                COUNTRIES.ES -> isSpanishCardValid(codeCard)
             }
         }catch (e : Exception){
             //If country not listed return true

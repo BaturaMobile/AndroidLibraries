@@ -1,5 +1,6 @@
 package com.baturamobile.utils
 
+import com.baturamobile.utils.validators.VATValidator
 import junit.framework.Assert
 import org.junit.Test
 

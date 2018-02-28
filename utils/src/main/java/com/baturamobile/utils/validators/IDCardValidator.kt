@@ -1,4 +1,4 @@
-package com.baturamobile.utils
+package com.baturamobile.utils.validators
 
 
 
@@ -17,13 +17,13 @@ class IDCardValidator private constructor(){
         ES()
     }
 
-    private val countries = HashMap<IDCardValidator.COUNTRIES,Regex>()
+    private val countries = HashMap<COUNTRIES,Regex>()
     private val spanishLetterVerefied : HashMap<kotlin.Int,String>
 
     init{
-        countries.put(IDCardValidator.COUNTRIES.ES, Regex("^[X-Z]?[0-9]{8}[A-Za-z]\$"))
+        countries.put(COUNTRIES.ES, Regex("^[X-Z]?[0-9]{8}[A-Za-z]\$"))
 
-        spanishLetterVerefied = hashMapOf(1 to "T",1 to "R",2 to "W",3 to "A",4 to "G",
+        spanishLetterVerefied = hashMapOf(0 to "T",1 to "R",2 to "W",3 to "A",4 to "G",
                 5 to "M",6 to "Y",7 to "F",8 to "P",9 to "D",10 to "X",11 to "B",12 to "N",13 to "J",
                 14 to "Z",15 to "S",16 to "Q",17 to "V",18 to "H",19 to "L",20 to "C",21 to "K",22 to "E")
     }
@@ -31,7 +31,7 @@ class IDCardValidator private constructor(){
     fun validateIDCARD(isoCountry : String,codeCard: String) : Boolean{
         return try {
             when(COUNTRIES.valueOf(isoCountry)){
-                IDCardValidator.COUNTRIES.ES -> isSpanishCardValid(codeCard)
+                COUNTRIES.ES -> isSpanishCardValid(codeCard)
             }
         }catch (e : Exception){
             //If country not listed return true

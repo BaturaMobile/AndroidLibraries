@@ -6,6 +6,7 @@ import retrofit2.Response;
  * Created by vssnake on 10/10/2017.
  */
 
+@Deprecated
 public class NetWorkUtils {
 
     public static NetWorkException createError(Response response){

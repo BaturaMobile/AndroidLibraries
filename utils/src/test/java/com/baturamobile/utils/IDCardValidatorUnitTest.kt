@@ -1,5 +1,6 @@
 package com.baturamobile.utils
 
+import com.baturamobile.utils.validators.IDCardValidator
 import junit.framework.Assert.assertFalse
 import junit.framework.Assert.assertTrue
 import org.junit.Test
