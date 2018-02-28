@@ -29,8 +29,8 @@ en la parte derecha e izquierda del componente.
 Es un tipo de compotente que te permite utilizar una imagen y un text como si fueran 1
 con sistema de eventos integrado
 
-![selected](resources//oN.png)
-![no_selected](resources/OFF.png)
+![selected](resources/on.png)
+![no_selected](resources/off.png)
 
 
   ## MVP
