@@ -1,13 +1,17 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.BaturaMobile'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     buildToolsVersion '26.0.2'
 
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
 
@@ -31,32 +35,34 @@ dependencies {
     implementation project(':design')
     implementation project(':utils')
 
-    implementation various.constraints
-    implementation supportDependencies.appCompat
-    implementation supportDependencies.recyclerView
-    implementation playServices.location
+    implementation "com.android.support.constraint:constraint-layout:$constraints"
+    implementation "com.android.support:appcompat-v7:$supportLibrary"
+    implementation "com.android.support:recyclerview-v7:$supportLibrary"
+    implementation "com.google.android.gms:play-services-location:$playServices"
+    implementation "com.google.firebase:firebase-core:${playServices}"
 
 
-    annotationProcessor various.daggerCompiler
-    implementation various.dagger
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger"
+    implementation  "com.google.dagger:dagger-android:$dagger"
 
 
-    testImplementation testing.junit
-    testImplementation(testing.powerMockJunit) {
+    testImplementation "junit:junit:$junit"
+    testImplementation("org.powermock:powermock-module-junit4:$powerMockJunit") {
         exclude module: 'hamcrest-core'
         exclude module: 'objenesis'
    }
-    androidTestCompile(testing.espressoCore, {
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$expresso", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testImplementation testing.mockitoCore
-    testImplementation(testing.powerMockMockito2) {
+    testImplementation "org.mockito:mockito-core:${mockitoCore}"
+    testImplementation("org.powermock:powermock-api-mockito2:${powerMockJunit}") {
         exclude module: 'hamcrest-core'
        exclude module: 'objenesis'
     }
-    testImplementation testing.robolectric
-    testImplementation testing.robolectircShadow
-    testImplementation testing.kronosOpengl
+    testImplementation "org.robolectric:robolectric:$robolectic"
+    testImplementation "org.robolectric:shadows-support-v4:$robolectic"
+    testImplementation "org.khronos:opengl-api:${khronosOpengl}"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 }
 
@@ -73,6 +79,31 @@ configurations.all {
     }
 }
 
+// build a jar with source files
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    failOnError  false
+    source = android.sourceSets.main.java.sourceFiles
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    classpath += configurations.compile
+}
+
+// build a jar with javadoc
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
 repositories {
     google()
+    mavenCentral()
 }

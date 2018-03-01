@@ -13,7 +13,7 @@ import android.view.WindowManager;
 public class StatusBar {
 
 
-    public static void changeStatusbar(Activity activity,boolean statusBarTintColor,int hexColor){
+    public static void changeStatusbarColor(Activity activity,boolean statusBarTintColor,int hexColor){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             Window window = activity.getWindow();
 

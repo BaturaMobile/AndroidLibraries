@@ -102,34 +102,37 @@ public class BluetoothLEDiscovery {
 
         mBluetoothScanner = mBluetoothLECore.getBluetoothAdapter().getBluetoothLeScanner();
 
+        scanCallbackApi21 = new ScanCallback() {
+            @Override
+            public void onScanFailed(int errorCode) {
+                LogManager.e(TAG,"onScanFailed " + errorCode);
+                mScanResult.onError(errorCode);
+                super.onScanFailed(errorCode);
+            }
+
+            @Override
+            public void onScanResult(int callbackType, android.bluetooth.le.ScanResult result) {
+                LogManager.d(TAG,"onScanResult " + result.getDevice().getAddress());
+                super.onScanResult(callbackType, result);
+
+                mScanResult.onDeviceFound(new BluetoothDeviceWrapp(result.getDevice(),
+                        ScanRecordLega
+                                .parseFromBytes(result.getScanRecord().getBytes())));
+            }
+        };
+
         mBluetoothScanner.startScan(scanFilters,scanSettings,scanCallbackApi21);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     private void scanBleDevicesLegacy(UUID[] uuids){
+       // mBluetoothLECore.getBluetoothAdapter().startLeScan(leScanCallback);
         mBluetoothLECore.getBluetoothAdapter().startLeScan(uuids,leScanCallback);
 
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private ScanCallback scanCallbackApi21 = new ScanCallback() {
-        @Override
-        public void onScanFailed(int errorCode) {
-            LogManager.e(TAG,"onScanFailed " + errorCode);
-            mScanResult.onError(errorCode);
-            super.onScanFailed(errorCode);
-        }
-
-        @Override
-        public void onScanResult(int callbackType, android.bluetooth.le.ScanResult result) {
-            LogManager.d(TAG,"onScanResult " + result.getDevice().getAddress());
-            super.onScanResult(callbackType, result);
-
-            mScanResult.onDeviceFound(new BluetoothDeviceWrapp(result.getDevice(),
-                    ScanRecordLega
-                            .parseFromBytes(result.getScanRecord().getBytes())));
-        }
-    };
+    private ScanCallback scanCallbackApi21;
 
 
 

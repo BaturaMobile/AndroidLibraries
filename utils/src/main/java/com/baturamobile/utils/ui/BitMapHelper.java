@@ -1,9 +1,11 @@
-package com.baturamobile.utils;
+package com.baturamobile.utils.ui;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.view.ViewGroup;
 
 /**
  * Created by unai on 10/10/16.
@@ -30,6 +32,18 @@ public class BitMapHelper {
         Canvas canvas = new Canvas(bitmap);
         drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
         drawable.draw(canvas);
+        return bitmap;
+    }
+
+    public static Bitmap loadBitmapFromView(View v) {
+        Bitmap bitmap;
+        Canvas canvas;
+        v.measure(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        v.measure(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        bitmap = Bitmap.createBitmap(v.getMeasuredWidth(), v.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+        canvas = new Canvas(bitmap);
+        v.layout(0, 0, v.getMeasuredWidth(), v.getMeasuredHeight());
+        v.draw(canvas);
         return bitmap;
     }
 }

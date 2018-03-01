@@ -1,12 +1,17 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.BaturaMobile'
+
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     buildToolsVersion '26.0.2'
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
 
@@ -19,8 +24,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-
 }
 
 configurations.all {
@@ -42,18 +45,52 @@ configurations.all {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation various.retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
 
-    implementation various.maps_utils
-    implementation playServices.maps
-    implementation playServices.core
-    implementation supportDependencies.recyclerView
-    implementation various.gson
-    implementation various.jodaTime
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "com.google.maps.android:android-maps-utils:$maps_utils"
+    implementation  "com.google.android.gms:play-services-maps:$playServices"
+    implementation "com.google.firebase:firebase-core:$playServices"
+    implementation "com.google.android.gms:play-services-location:$playServices"
+    implementation "com.android.support:recyclerview-v7:$supportLibrary"
+    implementation "com.google.code.gson:gson:$gson"
+    implementation "joda-time:joda-time:$jodaTime"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+    implementation "com.github.bumptech.glide:okhttp3-integration:$glide_version"
+    implementation "com.android.support:appcompat-v7:$supportLibrary"
+    implementation "com.android.support.constraint:constraint-layout:$constraints"
+
+    testImplementation "junit:junit:$junit"
+    testImplementation "org.mockito:mockito-core:${mockitoCore}"
 
 
 }
+
+// build a jar with source files
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    failOnError  false
+    source = android.sourceSets.main.java.sourceFiles
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    classpath += configurations.compile
+}
+
+// build a jar with javadoc
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
 repositories {
     mavenCentral()
 }

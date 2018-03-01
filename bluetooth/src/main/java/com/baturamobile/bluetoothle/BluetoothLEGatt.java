@@ -9,7 +9,8 @@ import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothProfile;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.util.Log;
+
+import com.baturamobile.utils.log.LogStatic;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -36,6 +37,7 @@ public class BluetoothLEGatt {
 
 
 
+
     private int mConnectionState = BluetoothProfile.STATE_DISCONNECTED;
 
 
@@ -54,7 +56,7 @@ public class BluetoothLEGatt {
     public void connectToGatt(GattStatusInterface gattStatus){
 
 
-        Log.d(TAG,"connectGatt");
+        LogStatic.logInterface.d(TAG,"connectGatt");
         mBluetoothGatt = mBluetoothDevice.connectGatt(bluetoothLECore.getAppContext(), false, bluetoothGattCallback);
 
         mBluetoothGatt.connect();
@@ -185,6 +187,7 @@ public class BluetoothLEGatt {
 
             return;
         }
+        LogStatic.logInterface.d(TAG,"OnConnectionStateChange | OldStatus " + status + " | NewStatus " + newState);
         switch (newState){
             case BluetoothProfile.STATE_CONNECTED:
                 mBluetoothGattStatus.onConnectionStatus(true);

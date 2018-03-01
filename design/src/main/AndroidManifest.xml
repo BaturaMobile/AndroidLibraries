@@ -8,7 +8,9 @@
         android:supportsRtl="true">
 
         <activity android:name=".popup.PopUpScreen" android:screenOrientation="portrait"
-            android:theme="@style/Theme.Transparent"/>
+            android:theme="@style/Popup.Theme.Transparent"/>
+
+
 
     </application>
 

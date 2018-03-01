@@ -1,12 +1,15 @@
 package com.baturamobile.mvp;
 
+
+import android.support.annotation.Nullable;
+
 /**
  * Created by unai on 12/08/2016.
  */
 
 public abstract class  BasePresenter<T extends BaseInteface> {
 
-    protected T viewInterface;
+    protected @Nullable T viewInterface;
 
     public void inject(T link){
         viewInterface = link;
@@ -16,7 +19,10 @@ public abstract class  BasePresenter<T extends BaseInteface> {
 
     protected void onStop(){}
 
-    protected void onDestroy(){}
+    protected void onDestroy(){
+        viewInterface = null;
+
+    }
 
     protected void onResume(){}
 

@@ -65,8 +65,8 @@ public class BaturaImageText extends LinearLayoutCompat implements View.OnClickL
 
         mView = inflater.inflate(R.layout.batura_image_text,this,true);
 
-        mImageView  = (AppCompatImageView) findViewById(R.id.bit_image);
-        mTextView = (BaturaTextView) findViewById(R.id.bit_text);
+        mImageView  = findViewById(R.id.bit_image);
+        mTextView = findViewById(R.id.bit_text);
 
         selectBackground();
 
@@ -97,7 +97,8 @@ public class BaturaImageText extends LinearLayoutCompat implements View.OnClickL
     private void processAttributes(AttributeSet attrs) {
         if (attrs != null) {
             TypedArray attributes = getContext().obtainStyledAttributes(attrs, R.styleable.BaturaImageText);
-            mImageSrc = attributes.getDrawable(R.styleable.BaturaImageText_imageSrc);
+
+            int resourceId = attributes.getResourceId(R.styleable.BaturaImageText_imageSrc,0);
             mText =  attributes.getString(R.styleable.BaturaImageText_titleText);
             mNormalColor = attributes.getColor(R.styleable.BaturaImageText_normalColor, Color.GRAY);
             mSelectedColor = attributes.getColor(R.styleable.BaturaImageText_selectedColor, Color.BLACK);
@@ -111,7 +112,7 @@ public class BaturaImageText extends LinearLayoutCompat implements View.OnClickL
             }
 
 
-            mImageView.setImageDrawable(mImageSrc);
+            mImageView.setImageResource(resourceId);
 
 
             deselected();
@@ -216,11 +217,7 @@ public class BaturaImageText extends LinearLayoutCompat implements View.OnClickL
             super(in);
 
             int isSelectable = in.readInt();
-            if (isSelectable == 0){
-                stateIsSelectable = false;
-            }else{
-                stateIsSelectable = true;
-            }
+            stateIsSelectable = isSelectable != 0;
         }
 
         @Override

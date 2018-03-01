@@ -66,12 +66,15 @@ public class BaturaTextInputLayout extends TextInputLayout {
             return;
         }
 
-        SavedState ss = (SavedState)state;
-        super.onRestoreInstanceState(ss.getSuperState());
+        try{
+            SavedState ss = (SavedState)state;
+            super.onRestoreInstanceState(ss.getSuperState());
 
-        this.styleError = ss.styleError;
+            this.styleError = ss.styleError;
 
-        redrawCustomFeatures();
+            redrawCustomFeatures();
+        }catch (Exception e){}
+
     }
 
     static class SavedState extends BaseSavedState {

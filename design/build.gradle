@@ -1,12 +1,16 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.BaturaMobile'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     buildToolsVersion '26.0.2'
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
 
@@ -26,14 +30,17 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
 
-    implementation supportDependencies.appCompat
-    implementation supportDependencies.design
-    implementation supportDependencies.recyclerView
-    implementation supportDependencies.cardView
-    implementation various.picasso
-    implementation various.constraints
+    implementation "com.android.support:appcompat-v7:$supportLibrary"
+    implementation "com.android.support:design:$supportLibrary"
+
+    implementation "com.android.support:recyclerview-v7:$supportLibrary"
+    implementation "com.android.support:cardview-v7:$supportLibrary"
+
+    implementation "com.squareup.picasso:picasso:$picasso"
+    implementation "com.android.support.constraint:constraint-layout:$constraints"
 
     implementation project(':utils')
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 configurations.all {
@@ -49,6 +56,31 @@ configurations.all {
     }
 }
 
+// build a jar with source files
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    failOnError  false
+    source = android.sourceSets.main.java.sourceFiles
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    classpath += configurations.compile
+}
+
+// build a jar with javadoc
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
 repositories {
     google()
+    mavenCentral()
 }

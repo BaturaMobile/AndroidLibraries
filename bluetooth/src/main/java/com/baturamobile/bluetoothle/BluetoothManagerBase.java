@@ -12,11 +12,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
-import android.util.Log;
 
 import com.baturamobile.bluetoothle.wrapers.BluetoothCharacteristicWrapper;
 import com.baturamobile.bluetoothle.wrapers.BluetoothDeviceWrapp;
 import com.baturamobile.bluetoothle.wrapers.BluetoothServiceWrapper;
+import com.baturamobile.utils.log.LogStatic;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -102,26 +102,56 @@ public abstract class BluetoothManagerBase implements BluetoothLEDiscovery.ScanR
        }
     }
 
+    /***
+     * This functions return the devices is being discovered for the bluetooth device
+     * @param bluetoothDevices devices discovered
+     */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     protected abstract void promtBluetoothDevice(Map<String,BluetoothDeviceWrapp> bluetoothDevices);
 
+    /**
+     * When the Gatt services are discovered and the library assign the services with the config this function will be call
+     * Contains a Map of {@link BluetoothServiceWrapper}
+     * @param characteristics
+     */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     protected abstract void gattProcessed(Map<String,BluetoothServiceWrapper> characteristics);
 
+    /**
+     * When the bluetooth client response the write request
+     * @param bluetoothCharacteristicWrapper {@link BluetoothCharacteristicWrapper}
+     * @param status @See <a href="http://allmydroids.blogspot.com.es/2015/06/android-ble-error-status-codes-explained.html">BLE Codes</a>
+     */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     protected abstract void characteristicWritten(BluetoothCharacteristicWrapper bluetoothCharacteristicWrapper,int status);
 
+    /**
+     * When you are subscriber to a characteristics this function is call when the client send a changes of the characteristic value
+     * @param bluetoothCharacteristicWrapper {@link BluetoothCharacteristicWrapper}
+     */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     protected abstract void characteristicChanged(BluetoothCharacteristicWrapper bluetoothCharacteristicWrapper);
 
+    /**
+     * When the bluetooth client response the read request
+     * @param bluetoothCharacteristicWrapper {@link BluetoothCharacteristicWrapper}
+     * @param status @See <a href="http://allmydroids.blogspot.com.es/2015/06/android-ble-error-status-codes-explained.html">BLE Codes</a>
+     */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     protected abstract void characteristicRead(BluetoothCharacteristicWrapper bluetoothCharacteristicWrapper,int status);
 
+    /**
+     * When the bluetooth client response the write request in a characteristic desciptor
+     * @param bluetoothCharacteristicWrapper {@link BluetoothCharacteristicWrapper}
+     * @param status @See <a href="http://allmydroids.blogspot.com.es/2015/06/android-ble-error-status-codes-explained.html">BLE Codes</a>
+     */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     protected abstract void descriptorWritten(BluetoothCharacteristicWrapper bluetoothCharacteristicWrapper, int status);
 
+    /**
+     * This function is being called when the client change the status of connection
+     */
     protected abstract void deviceStatusChange();
-
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     protected String getServiceName(String uuid){
@@ -180,16 +210,16 @@ public abstract class BluetoothManagerBase implements BluetoothLEDiscovery.ScanR
             setInitialized(false);
 
         }
-        Log.d(TAG,"OnConnection Status " + connected);
+        LogStatic.logInterface.d(TAG,"OnConnection Status " + connected);
     }
 
     public void onServicesDiscovered(List<BluetoothGattService> services){
-        Log.d(TAG,"onServicesDiscovered Services " + services.size());
+        LogStatic.logInterface.d(TAG,"onServicesDiscovered Services " + services.size());
         bluetoothGattWrapperFactory.addServices(services);
     }
 
     public void onServicesProcessed(Map<String, Map<String, BluetoothGattCharacteristic>> resultServices){
-        Log.d(TAG,"services Processed ");
+        LogStatic.logInterface.d(TAG,"services Processed ");
     }
     @Override
     public void onCharacteristicsProcessed(Map<String, Map<String, BluetoothGattCharacteristic>> characteristics) {
@@ -256,17 +286,17 @@ public abstract class BluetoothManagerBase implements BluetoothLEDiscovery.ScanR
 
 
     public void onProblemDiscoverServices(){
-        Log.d(TAG,"onProblemProcessServices ");
+        LogStatic.logInterface.d(TAG,"onProblemProcessServices ");
     }
 
     public void onDiscoveringServices(){
-        Log.d(TAG,"onDiscovering Services ");
+        LogStatic.logInterface.d(TAG,"onDiscovering Services ");
     }
 
 
 
     public void onProblemProcessServices(){
-        Log.d(TAG,"onProblemProcessServices ");
+        LogStatic.logInterface.d(TAG,"onProblemProcessServices ");
     }
 
     @Override

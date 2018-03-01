@@ -46,7 +46,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Ba
     public abstract class BaseViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
 
         private T itemModel;
-        int position;
+        public int position;
 
         Context context;
 
@@ -63,8 +63,6 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Ba
             this.position = position;
 
             refreshView();
-
-
         }
 
         public abstract void refreshView();
