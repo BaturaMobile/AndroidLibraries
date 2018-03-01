@@ -17,7 +17,7 @@ import android.view.View;
  * Created by vssnake on 02/08/2017.
  */
 
-public class BaturBaturaImageText extends LinearLayoutCompat implements View.OnClickListener {
+public class BaturaImageText extends LinearLayoutCompat implements View.OnClickListener {
 
     private AppCompatImageView mImageView;
     private BaturaTextView mTextView;
