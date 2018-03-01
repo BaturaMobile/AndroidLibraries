@@ -2,10 +2,17 @@
 
 [![N|Batura](https://pbs.twimg.com/profile_images/935581638179860481/AWlr-ocN_400x400.jpg)
 
+Gradle
+
+        com.github.baturaMobile.android-libraries:bluetooth:1.02
+        com.github.baturaMobile.android-libraries:design:1.02
+        com.github.baturaMobile.android-libraries:utils:1.02
+        com.github.baturaMobile.android-libraries:mvp:1.02
 
 # Arquitectura librería
 
   La librería tiene 4 modulos diferenciados
+
 
   - Bluetooth
   - Design
