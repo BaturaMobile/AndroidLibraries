@@ -245,7 +245,7 @@ public class BaturaCircularProgressBar extends ProgressBar{
                 if(progress!= BaturaCircularProgressBar.this.getProgress()){
                     if (LogStaticV2.INSTANCE.getLogInterfaceV2() != null){
                         LogStaticV2.INSTANCE.getLogInterfaceV2().log(Log.DEBUG,TAG, progress + "");
-                    }s
+                    }
                     BaturaCircularProgressBar.this.setProgress(progress);
                     if(listener!=null)
                         listener.onAnimationProgress(progress);
