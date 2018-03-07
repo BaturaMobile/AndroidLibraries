@@ -39,7 +39,7 @@ public final class ScanRecordLega implements Parcelable {
 
     private final int mAdvertiseFlags;
     private byte[] mBytes;
-    private final String mDeviceName;
+    public final String mDeviceName;
     private SparseArray<byte[]> mManufacturerSpecificData;
     private Map<ParcelUuid, byte[]> mServiceData;
     private final List<ParcelUuid> mServiceUuids;
