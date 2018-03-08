@@ -4,10 +4,10 @@
 
 Gradle
 
-        com.github.baturaMobile.android-libraries:bluetooth:1.02
-        com.github.baturaMobile.android-libraries:design:1.02
-        com.github.baturaMobile.android-libraries:utils:1.02
-        com.github.baturaMobile.android-libraries:mvp:1.02
+        com.github.baturaMobile.android-libraries:bluetooth:1.05
+        com.github.baturaMobile.android-libraries:design:1.05
+        com.github.baturaMobile.android-libraries:utils:1.05
+        com.github.baturaMobile.android-libraries:mvp:1.05
 
 # Arquitectura librería
 
