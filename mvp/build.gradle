@@ -39,7 +39,7 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$supportLibrary"
     implementation "com.android.support:recyclerview-v7:$supportLibrary"
     implementation "com.google.android.gms:play-services-location:$playServices"
-    implementation "com.google.firebase:firebase-core:${playServices}"
+    implementation "com.google.firebase:firebase-core:$playServices"
 
 
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger"
