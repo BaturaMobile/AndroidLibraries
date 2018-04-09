@@ -91,8 +91,10 @@ public class BaturaTextInputLayout extends TextInputLayout {
 
         @Override
         public void writeToParcel(Parcel out, int flags) {
-            super.writeToParcel(out, flags);
-            out.writeInt(this.styleError);
+            try {
+                super.writeToParcel(out, flags);
+                out.writeInt(this.styleError);
+            } catch (Exception ignore) {}
         }
 
         public static final Parcelable.Creator<SavedState> CREATOR =
