@@ -64,7 +64,7 @@ class VATValidator private constructor(){
                 val letterFinal = 10- EDigit
 
                 return spanishLetterVerefied.containsKey(letterFinal)
-                        && spanishLetterVerefied.get(letterFinal).equals(codeCard.substring(0,1),true)
+                        //&& spanishLetterVerefied.get(letterFinal).equals(codeCard.substring(0,1),true)
             }catch (e :  Exception){
                 return false;
             }
