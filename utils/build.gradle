@@ -7,7 +7,7 @@ group='com.github.BaturaMobile'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         minSdkVersion 16
@@ -43,12 +43,10 @@ configurations.all {
 
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
-
     implementation "com.google.maps.android:android-maps-utils:$maps_utils"
-    implementation  "com.google.android.gms:play-services-maps:$playServices"
+    implementation "com.google.android.gms:play-services-maps:$playServices"
     implementation "com.google.firebase:firebase-core:$playServices"
     implementation "com.google.android.gms:play-services-location:$playServices"
     implementation "com.android.support:recyclerview-v7:$supportLibrary"
@@ -60,11 +58,8 @@ dependencies {
     implementation "com.github.bumptech.glide:okhttp3-integration:$glide_version"
     implementation "com.android.support:appcompat-v7:$supportLibrary"
     implementation "com.android.support.constraint:constraint-layout:$constraints"
-
     testImplementation "junit:junit:$junit"
     testImplementation "org.mockito:mockito-core:${mockitoCore}"
-
-
 }
 
 // build a jar with source files
