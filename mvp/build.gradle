@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'kotlin-kapt'
 
 group='com.github.BaturaMobile'
 
@@ -36,7 +37,7 @@ dependencies {
     implementation "com.android.support:recyclerview-v7:$supportLibrary"
     implementation "com.google.android.gms:play-services-location:$playServices"
     implementation "com.google.firebase:firebase-core:$playServices"
-    annotationProcessor "com.google.dagger:dagger-compiler:$dagger"
+    kapt "com.google.dagger:dagger-compiler:$dagger"
     implementation "com.google.dagger:dagger-android:$dagger"
     testImplementation "junit:junit:$junit"
     testImplementation("org.powermock:powermock-module-junit4:$powerMockJunit") {
