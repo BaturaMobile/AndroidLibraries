@@ -1,4 +1,4 @@
-package eus.realsociedad.realzale.library.v3
+package com.baturamobile.mvp.v3
 
 import android.app.Activity
 import android.arch.lifecycle.Lifecycle
@@ -8,7 +8,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.annotation.CallSuper
 import android.support.annotation.LayoutRes
 import android.support.v4.app.Fragment
@@ -19,6 +18,7 @@ import android.util.AttributeSet
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import com.baturamobile.mvp.v3.MvpUtils
 import java.lang.ref.WeakReference
 
 
@@ -26,7 +26,7 @@ import java.lang.ref.WeakReference
  * Created by vssnake on 20/02/2018.
  */
 
-abstract class BaseActivityV3 : AppCompatActivity(), BaseContractV3{
+abstract class BaseActivityV3 : AppCompatActivity(), com.baturamobile.mvp.v3.BaseContractV3{
 
     var dataBundle : Bundle? = null
 
@@ -46,7 +46,7 @@ abstract class BaseActivityV3 : AppCompatActivity(), BaseContractV3{
         }
     }
 
-    open fun getViewDelegate() : ViewDelegateV3?{
+    open fun getViewDelegate() : com.baturamobile.mvp.v3.ViewDelegateV3?{
         return  null
     }
 
@@ -54,7 +54,7 @@ abstract class BaseActivityV3 : AppCompatActivity(), BaseContractV3{
         return this
     }
 
-    open fun getActivityDelegate() : ActivityDelegateV3?{
+    open fun getActivityDelegate() : com.baturamobile.mvp.v3.ActivityDelegateV3?{
         return null
     }
 
@@ -147,7 +147,7 @@ abstract class BaseActivityV3 : AppCompatActivity(), BaseContractV3{
     }
 }
 
-abstract class MVPActivityV3<out T : BasePresenterV3<out BaseContractV3>> : BaseActivityV3(),BaseContractV3 {
+abstract class MVPActivityV3<out T : com.baturamobile.mvp.v3.BasePresenterV3<out com.baturamobile.mvp.v3.BaseContractV3>> : com.baturamobile.mvp.v3.BaseActivityV3(),com.baturamobile.mvp.v3.BaseContractV3 {
     override fun getContext(): Context {
         return this
     }
@@ -169,7 +169,7 @@ abstract class MVPActivityV3<out T : BasePresenterV3<out BaseContractV3>> : Base
     }
 }
 
-abstract class BaseFragmentV3 : Fragment(), BaseContractV3{
+abstract class BaseFragmentV3 : Fragment(), com.baturamobile.mvp.v3.BaseContractV3{
 
 
     open fun setupViews(){}
@@ -178,10 +178,10 @@ abstract class BaseFragmentV3 : Fragment(), BaseContractV3{
         activity?.finish()
     }
 
-    abstract fun getFragmentDelegate() : FragmentDelegateV3?
+    abstract fun getFragmentDelegate() : com.baturamobile.mvp.v3.FragmentDelegateV3?
 
 
-    open fun getViewDelegate() : ViewDelegateV3?{
+    open fun getViewDelegate() : com.baturamobile.mvp.v3.ViewDelegateV3?{
         return  null
     }
 
@@ -213,8 +213,8 @@ abstract class BaseFragmentV3 : Fragment(), BaseContractV3{
 
     override fun getBundle(): Bundle? {
         activity?.let {
-            if (activity is BaseActivityV3){
-                return (activity as BaseActivityV3).getBundle()
+            if (activity is com.baturamobile.mvp.v3.BaseActivityV3){
+                return (activity as com.baturamobile.mvp.v3.BaseActivityV3).getBundle()
             }
         }
         return null
@@ -222,7 +222,7 @@ abstract class BaseFragmentV3 : Fragment(), BaseContractV3{
 
 }
 
-abstract class MVPFragmentV3<out T : BasePresenterV3<out BaseContractV3>> : BaseFragmentV3(), BaseContractV3 {
+abstract class MVPFragmentV3<out T : com.baturamobile.mvp.v3.BasePresenterV3<out com.baturamobile.mvp.v3.BaseContractV3>> : com.baturamobile.mvp.v3.BaseFragmentV3(), com.baturamobile.mvp.v3.BaseContractV3 {
 
 
     abstract fun injectDI()
@@ -268,7 +268,7 @@ abstract class MVPViewGroup @JvmOverloads constructor(
     abstract fun inject()
 }
 
-abstract class MVPViewgroupBasePresenter<out T : BaseViewGroupContract>(view : T){
+abstract class MVPViewgroupBasePresenter<out T : com.baturamobile.mvp.v3.BaseViewGroupContract>(view : T){
 
     private val attachedViewGroup = WeakReference(view)
 
@@ -290,7 +290,7 @@ abstract class MVPViewgroupBasePresenter<out T : BaseViewGroupContract>(view : T
 
 interface BaseViewGroupContract
 
-abstract class BasePresenterV3<T : BaseContractV3> () : LifecycleObserver{
+abstract class BasePresenterV3<T : com.baturamobile.mvp.v3.BaseContractV3> () : LifecycleObserver{
     abstract fun loadData()
 
 
