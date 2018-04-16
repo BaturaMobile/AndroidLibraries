@@ -55,6 +55,10 @@ dependencies {
     testImplementation "org.robolectric:shadows-support-v4:$robolectic"
     testImplementation "org.khronos:opengl-api:${khronosOpengl}"
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // ViewModel and LiveData
+    api "android.arch.lifecycle:extensions:$arch_version"
+    kapt "android.arch.lifecycle:compiler:$arch_version"
 }
 
 configurations.all {
