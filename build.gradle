@@ -27,10 +27,10 @@ allprojects {
     }
 }
 ext{
-    supportLibrary = "27.0.2"
+    supportLibrary = "27.1.1"
     constraints = "1.1.0-beta5"
     picasso = "2.5.2"
-    playServices = "11.8.0"
+    playServices = "15.0.0"
     dagger = "2.9"
     retrofit = "2.3.0"
     maps_utils = "0.5"
