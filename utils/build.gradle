@@ -24,10 +24,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-    packagingOptions {
-        exclude 'META-INF/utils_release.kotlin_module'
-    }
 }
 
 configurations.all {

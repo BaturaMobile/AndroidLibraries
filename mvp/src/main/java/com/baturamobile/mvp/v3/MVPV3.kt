@@ -252,17 +252,23 @@ abstract class MVPFragmentV3<out T : com.baturamobile.mvp.v3.BasePresenterV3<out
 }
 
 
-abstract class MVPViewGroup @JvmOverloads constructor(
+abstract class MVPViewGroup<out T: MVPViewgroupBasePresenter<BaseViewGroupContract>> @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : ViewGroup(context, attrs, defStyleAttr) {
+
+
+
+    abstract fun getPresenter(): T?
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         inject()
+        getPresenter()?.onAttach()
     }
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
+        getPresenter()?.onDetach()
     }
 
     abstract fun inject()
@@ -271,6 +277,8 @@ abstract class MVPViewGroup @JvmOverloads constructor(
 abstract class MVPViewgroupBasePresenter<out T : com.baturamobile.mvp.v3.BaseViewGroupContract>(view : T){
 
     private val attachedViewGroup = WeakReference(view)
+
+
 
     fun isAttached() : Boolean{
         return attachedViewGroup.get() != null
@@ -281,9 +289,9 @@ abstract class MVPViewgroupBasePresenter<out T : com.baturamobile.mvp.v3.BaseVie
     }
 
 
-    fun onDetach(){}
+    open fun onDetach(){}
 
-    fun onAttach(){}
+    open fun onAttach(){}
 }
 
 
