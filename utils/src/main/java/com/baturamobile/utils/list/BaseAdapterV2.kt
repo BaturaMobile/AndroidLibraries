@@ -1,8 +1,10 @@
-package eus.realsociedad.realzale.library.realist
+package com.baturamobile.utils.list
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import eus.realsociedad.realzale.library.realist.NoImageModelV2
+import java.util.*
 
 /**
  * Created by vssnake on 08/05/2017.

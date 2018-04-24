@@ -257,12 +257,12 @@ abstract class MVPViewGroup<out T: MVPViewgroupBasePresenter<BaseViewGroupContra
 ) : ViewGroup(context, attrs, defStyleAttr) {
 
 
+    abstract fun injectDI()
 
     abstract fun getPresenter(): T?
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        inject()
         getPresenter()?.onAttach()
     }
 
@@ -271,21 +271,24 @@ abstract class MVPViewGroup<out T: MVPViewgroupBasePresenter<BaseViewGroupContra
         getPresenter()?.onDetach()
     }
 
-    abstract fun inject()
 }
 
-abstract class MVPViewgroupBasePresenter<out T : com.baturamobile.mvp.v3.BaseViewGroupContract>(view : T){
+abstract class MVPViewgroupBasePresenter<T : com.baturamobile.mvp.v3.BaseViewGroupContract>{
 
-    private val attachedViewGroup = WeakReference(view)
+    private var attachedViewGroup : WeakReference<T>? = null
 
 
 
     fun isAttached() : Boolean{
-        return attachedViewGroup.get() != null
+        return attachedViewGroup?.get() != null
     }
 
     fun getView() : T?{
-        return attachedViewGroup.get()
+        return attachedViewGroup?.get()
+    }
+
+    fun inject(view : T){
+        attachedViewGroup = WeakReference(view)
     }
 
 

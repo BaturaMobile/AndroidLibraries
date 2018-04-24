@@ -15,8 +15,10 @@ import android.view.ViewGroup
 
 
 import com.baturamobile.utils.R
+import com.baturamobile.utils.list.BaseAdapterV2
 import com.baturamobile.utils.list.BaseRecycleView
 import kotlinx.android.synthetic.main.fragment_rv.*
+import java.util.*
 
 
 abstract class BaseV2RecycleViewFragment : Fragment(), BaseRecycleView<NoImageModelV2>, BaseAdapterV2.HolderClick<NoImageModelV2> {
