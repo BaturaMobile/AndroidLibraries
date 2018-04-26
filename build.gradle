@@ -29,7 +29,7 @@ allprojects {
 }
 ext{
     supportLibrary = "27.1.1"
-    constraints = "1.1.0-beta5"
+    constraints = "1.1.0"
     picasso = "2.5.2"
     playServices = "15.0.0"
     dagger = "2.9"
