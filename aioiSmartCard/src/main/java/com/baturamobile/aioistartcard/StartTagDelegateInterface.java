@@ -2,8 +2,6 @@ package com.baturamobile.aioistartcard;
 
 import android.support.v7.app.AppCompatActivity;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * Created by vssnake on 26/06/2017.
  */
@@ -22,7 +20,7 @@ public interface StartTagDelegateInterface {
 
     void onNFCDataRead(String readText);
 
-    void onNFCError(@NotNull  Exception exception);
+    void onNFCError(Exception exception);
 
     void onNFCSuccess();
 
