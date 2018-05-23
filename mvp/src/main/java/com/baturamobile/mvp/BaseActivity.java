@@ -115,6 +115,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
        if (locationModule != null){
            locationModule.processPermissionResult(requestCode,permissions,grantResults);
        }
+       super.onRequestPermissionsResult(requestCode,permissions,grantResults);
     }
 
     public void initLocationModule(LocationModule.LocationModuleCallback locationModuleCallback,String permission,int priority){

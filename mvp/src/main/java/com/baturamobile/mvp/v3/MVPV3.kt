@@ -18,6 +18,7 @@ import android.util.AttributeSet
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import com.baturamobile.mvp.v3.MvpUtils
 import java.lang.ref.WeakReference
 
@@ -252,32 +253,37 @@ abstract class MVPFragmentV3<out T : com.baturamobile.mvp.v3.BasePresenterV3<out
 }
 
 
-abstract class MVPViewGroup<out T: MVPViewgroupBasePresenter<BaseViewGroupContract>> @JvmOverloads constructor(
+abstract class MVPViewGroup< T: MVPViewgroupBasePresenter<out BaseViewGroupContractView>> @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : ViewGroup(context, attrs, defStyleAttr) {
-
-
+) : ViewGroup(context, attrs, defStyleAttr)
+{
     abstract fun injectDI()
 
     abstract fun getPresenter(): T?
 
-    override fun onAttachedToWindow() {
+    override fun onViewAdded(child: View?)
+    {
+        super.onViewAdded(child)
+        injectDI()
+        getPresenter()?.onViewAdded()
+    }
+
+    override fun onAttachedToWindow()
+    {
         super.onAttachedToWindow()
         getPresenter()?.onAttach()
     }
 
-    override fun onDetachedFromWindow() {
+    override fun onDetachedFromWindow()
+    {
         super.onDetachedFromWindow()
         getPresenter()?.onDetach()
     }
-
 }
 
-abstract class MVPViewgroupBasePresenter<T : com.baturamobile.mvp.v3.BaseViewGroupContract>{
-
+abstract class MVPViewgroupBasePresenter<T : BaseViewGroupContractView>
+{
     private var attachedViewGroup : WeakReference<T>? = null
-
-
 
     fun isAttached() : Boolean{
         return attachedViewGroup?.get() != null
@@ -291,15 +297,68 @@ abstract class MVPViewgroupBasePresenter<T : com.baturamobile.mvp.v3.BaseViewGro
         attachedViewGroup = WeakReference(view)
     }
 
+    open fun onViewAdded(){}
 
     open fun onDetach(){}
 
     open fun onAttach(){}
 }
 
+interface BaseViewGroupContractView
 
+abstract class MVPRelativeLayout< T: MVPRelativeLayoutBasePresenter<out BaseRelativeLayoutContractView>> @JvmOverloads constructor(
+        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : RelativeLayout(context, attrs, defStyleAttr)
+{
+    abstract fun injectDI()
 
-interface BaseViewGroupContract
+    abstract fun getPresenter(): T?
+
+    override fun onViewAdded(child: View?)
+    {
+        super.onViewAdded(child)
+        injectDI()
+        getPresenter()?.onViewAdded()
+    }
+
+    override fun onAttachedToWindow()
+    {
+        super.onAttachedToWindow()
+        getPresenter()?.onAttach()
+    }
+
+    override fun onDetachedFromWindow()
+    {
+        super.onDetachedFromWindow()
+        getPresenter()?.onDetach()
+    }
+
+}
+
+abstract class MVPRelativeLayoutBasePresenter<T : BaseRelativeLayoutContractView>
+{
+    private var attachedViewGroup : WeakReference<T>? = null
+
+    fun isAttached() : Boolean{
+        return attachedViewGroup?.get() != null
+    }
+
+    fun getView() : T?{
+        return attachedViewGroup?.get()
+    }
+
+    fun inject(view : T){
+        attachedViewGroup = WeakReference(view)
+    }
+
+    open fun onViewAdded(){}
+
+    open fun onDetach(){}
+
+    open fun onAttach(){}
+}
+
+interface BaseRelativeLayoutContractView
 
 abstract class BasePresenterV3<T : com.baturamobile.mvp.v3.BaseContractV3> () : LifecycleObserver{
     abstract fun loadData()
