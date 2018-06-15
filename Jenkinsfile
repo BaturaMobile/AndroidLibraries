@@ -90,10 +90,6 @@ void sendErrorNotification(channel){
      slackSend color: '#ff0000',channel: channel,message: "Job failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})", botUser:true
 }
 
-void sendEmailSuccess() {
-    emailext body: BUILD_URL, subject: "Build $BUILD_NUMBER succeeded", to: EMAIL
-}
-
 void sendEmailFail() {
     if(currentBuild.result != 'FAILURE') {
         currentBuild.result = 'FAILURE'
